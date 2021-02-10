@@ -2,5 +2,6 @@ rootProject.name = "Critiq"
 rootProject.buildFileName = "build.gradle.kts"
 
 include(
-        ":app"
+        ":app",
+        ":feature_login"
 )
