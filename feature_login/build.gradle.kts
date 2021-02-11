@@ -45,17 +45,14 @@ android {
 
 dependencies {
     api(LibraryDependency.TIMBER)
+
     api(LibraryDependency.NAVIGATION_FRAGMENT_KTX)
     api(LibraryDependency.NAVIGATION_UI_KTX)
-    api(LibraryDependency.KOIN_ANDROID)
-    api(LibraryDependency.KOIN_ANDROID_EXTENSION)
-    api(LibraryDependency.KOIN_ANDROID_SCOPE)
+
     api(LibraryDependency.RETROFIT)
     api(LibraryDependency.GSON_CONVERTER)
     api(LibraryDependency.GSON)
-    implementation("androidx.legacy:legacy-support-v4:1.0.0")
-    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.2.0")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0")
+
 
     addTestDependencies()
 }

@@ -6,14 +6,11 @@ private object LibraryVersion {
     const val RECYCLER_VIEW = "1.2.0-alpha05"
     const val MATERIAL = "1.1.0-alpha09"
     const val CONSTRAINT_LAYOUT = "1.1.3"
-    const val CORE_KTX = "1.1.0"
-    const val FRAGMENT_KTX = "1.2.5" //1.1.0
     const val LIFECYCLE = "2.2.0"
     const val LIFECYCLE_VIEW_MODEL_KTX = "2.2.0"
     const val ANDROID_LEGACY_SUPPORT = "1.0.0"
 
     //Koin
-    const val KOIN = "2.2.0"
     const val RETROFIT = "2.9.0"
     const val SWIPE_REFRESH_LAYOUT = "1.1.0"
     const val LOTTIE_ANIMATION = "3.5.0"
@@ -38,8 +35,6 @@ object LibraryDependency {
             "androidx.constraintlayout:constraintlayout:${LibraryVersion.CONSTRAINT_LAYOUT}"
     const val RECYCLER_VIEW = "androidx.recyclerview:recyclerview:${LibraryVersion.RECYCLER_VIEW}"
     const val MATERIAL = "com.google.android.material:material:${LibraryVersion.MATERIAL}"
-    const val FRAGMENT_KTX = "androidx.fragment:fragment-ktx:${LibraryVersion.FRAGMENT_KTX}"
-
     //LifeCycle
     const val LIFECYCLE_EXTENSIONS =
             "androidx.lifecycle:lifecycle-extensions:${LibraryVersion.LIFECYCLE}"
@@ -51,12 +46,6 @@ object LibraryDependency {
     const val NAVIGATION_FRAGMENT_KTX =
             "androidx.navigation:navigation-fragment-ktx:${CoreVersion.NAVIGATION}"
     const val NAVIGATION_UI_KTX = "androidx.navigation:navigation-ui-ktx:${CoreVersion.NAVIGATION}"
-
-    //Koin
-    const val KOIN_ANDROID = "org.koin:koin-android:${LibraryVersion.KOIN}"
-    const val KOIN_ANDROID_SCOPE = "org.koin:koin-android-scope:${LibraryVersion.KOIN}"
-    const val KOIN_ANDROID_VIEWMODEL = "org.koin:koin-android-viewmodel:${LibraryVersion.KOIN}"
-    const val KOIN_ANDROID_EXTENSION = "org.koin:koin-android-ext:${LibraryVersion.KOIN}"
 
     const val RETROFIT = "com.squareup.retrofit2:retrofit:${LibraryVersion.RETROFIT}"
     const val GSON_CONVERTER = "com.squareup.retrofit2:converter-gson:${LibraryVersion.RETROFIT}"
@@ -80,4 +69,7 @@ object LibraryDependency {
     const val ROOM = "androidx.room:room-runtime:${LibraryVersion.ROOM}"
     const val ROOM_COMPILER = "androidx.room:room-compiler:${LibraryVersion.ROOM}"
     const val ROOM_KTX = "androidx.room:room-ktx:${LibraryVersion.ROOM}"
+
+    const val HILT = "com.google.dagger:hilt-android:${CoreVersion.HILT}"
+    const val HILT_COMPILER = "com.google.dagger:hilt-android-compiler:${CoreVersion.HILT}"
 }

@@ -3,7 +3,7 @@ plugins {
     id(GradlePluginId.KOTLIN_ANDROID)
     id(GradlePluginId.KOTLIN_KAPT)
     id(GradlePluginId.SAFE_ARGS)
-    id("kotlin-android")
+    id(GradlePluginId.HILT_ANDROID)
 }
 
 android {
@@ -49,14 +49,11 @@ dependencies {
 
     api(LibraryDependency.RECYCLER_VIEW)
     api(LibraryDependency.MATERIAL)
-    api(LibraryDependency.FRAGMENT_KTX)
 
     api(LibraryDependency.SUPPORT_CONSTRAINT_LAYOUT)
 
-    api(LibraryDependency.KOIN_ANDROID)
-    api(LibraryDependency.KOIN_ANDROID_EXTENSION)
-    api(LibraryDependency.KOIN_ANDROID_SCOPE)
-    api(LibraryDependency.KOIN_ANDROID_VIEWMODEL)
+    implementation(LibraryDependency.HILT)
+    kapt(LibraryDependency.HILT_COMPILER)
 
     addTestDependencies()
 }
