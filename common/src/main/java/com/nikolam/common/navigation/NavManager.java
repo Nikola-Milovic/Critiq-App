@@ -8,7 +8,6 @@ import java.util.function.Consumer;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
-@Singleton
 public class NavManager {
 
     @Inject

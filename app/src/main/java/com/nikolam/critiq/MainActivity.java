@@ -1,6 +1,7 @@
 package com.nikolam.critiq;
 
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
@@ -13,18 +14,20 @@ import com.nikolam.common.navigation.NavManager;
 import javax.inject.Inject;
 
 import dagger.hilt.android.AndroidEntryPoint;
+import timber.log.Timber;
 
 @AndroidEntryPoint
 public class MainActivity extends AppCompatActivity {
 
     private NavController navController ; //
 
-//    private ActivityMainBinding binding;
+    private ActivityMainBinding binding;
 
     @Inject
     NavManager navManager;
 
     private void initNavManager() {
+        Timber.d("Nav manager is %s", navManager.toString());
         navManager.setOnNavEvent(uri ->
                 navController.navigate(uri)
         );
@@ -37,7 +40,10 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+
+        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        View view = binding.getRoot();
+        setContentView(view);
 
         NavHostFragment navHostFragment =
                 (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment);

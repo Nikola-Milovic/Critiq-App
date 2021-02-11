@@ -4,5 +4,6 @@ rootProject.buildFileName = "build.gradle.kts"
 include(
         ":app",
         ":feature_login",
-        ":common"
+        ":common",
+        ":feature_main"
 )

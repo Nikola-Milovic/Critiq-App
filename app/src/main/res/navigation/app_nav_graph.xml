@@ -6,4 +6,12 @@
         android:id="@+id/loginFragment"
         android:name="com.nikolam.feature_login.LoginFragment"
         android:label="LoginFragment" />
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.nikolam.feature_main.presentation.MainFragment"
+        android:label="MainFragment">
+        <deepLink
+            android:id="@+id/deepLink"
+            app:uri="critiq://mainScreen" />
+    </fragment>
 </navigation>

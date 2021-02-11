@@ -13,32 +13,40 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.nikolam.common.navigation.NavManager;
+import com.nikolam.feature_login.databinding.LoginFragmentBinding;
 
 import javax.inject.Inject;
 
+import dagger.hilt.android.AndroidEntryPoint;
+
+@AndroidEntryPoint
 public class LoginFragment extends Fragment {
+    private LoginViewModel viewModel;
 
-
-    @Inject
-    NavManager navManager;
-
-    private LoginViewModel mViewModel;
-
-    public static LoginFragment newInstance() {
-        return new LoginFragment();
-    }
+    private LoginFragmentBinding binding;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.login_fragment, container, false);
+
+        binding = LoginFragmentBinding.inflate(inflater, container, false);
+        View view = binding.getRoot();
+
+        binding.loginButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                viewModel.navigateToMainScreen();
+            }
+        });
+
+
+        return view;
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mViewModel = new ViewModelProvider(this).get(LoginViewModel.class);
-        // TODO: Use the ViewModel
+        viewModel = new ViewModelProvider(this).get(LoginViewModel.class);
     }
 
 }

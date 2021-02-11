@@ -2,6 +2,7 @@ plugins {
     id(GradlePluginId.ANDROID_LIBRARY)
     id(GradlePluginId.KOTLIN_ANDROID)
     id(GradlePluginId.KOTLIN_KAPT)
+    id(GradlePluginId.HILT_ANDROID)
 }
 
 android {
@@ -39,7 +40,7 @@ android {
     }
 
     buildFeatures {
-        dataBinding = true
+        viewBinding = true
     }
 }
 

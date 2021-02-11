@@ -57,6 +57,7 @@ dependencies {
 
     implementation(project(":common"))
     implementation(project(":feature_login"))
+    implementation(project(":feature_main"))
 
     addTestDependencies()
 }
