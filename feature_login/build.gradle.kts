@@ -46,13 +46,17 @@ android {
 dependencies {
     api(LibraryDependency.TIMBER)
 
-    api(LibraryDependency.NAVIGATION_FRAGMENT_KTX)
-    api(LibraryDependency.NAVIGATION_UI_KTX)
+    api(LibraryDependency.NAVIGATION_FRAGMENT)
+    api(LibraryDependency.NAVIGATION_UI)
 
     api(LibraryDependency.RETROFIT)
     api(LibraryDependency.GSON_CONVERTER)
     api(LibraryDependency.GSON)
 
+    implementation(LibraryDependency.HILT)
+    kapt(LibraryDependency.HILT_COMPILER)
+
+    implementation(project(":common"))
 
     addTestDependencies()
 }

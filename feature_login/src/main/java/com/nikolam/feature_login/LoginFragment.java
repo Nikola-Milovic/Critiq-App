@@ -12,7 +12,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.nikolam.common.navigation.NavManager;
+
+import javax.inject.Inject;
+
 public class LoginFragment extends Fragment {
+
+
+    @Inject
+    NavManager navManager;
 
     private LoginViewModel mViewModel;
 

@@ -1,16 +1,13 @@
 plugins {
-    id(GradlePluginId.ANDROID_APPLICATION)
+    id(GradlePluginId.ANDROID_LIBRARY)
     id(GradlePluginId.KOTLIN_ANDROID)
     id(GradlePluginId.KOTLIN_KAPT)
-    id(GradlePluginId.SAFE_ARGS)
-    id(GradlePluginId.HILT_ANDROID)
 }
 
 android {
     compileSdkVersion(AndroidConfig.COMPILE_SDK_VERSION)
 
     defaultConfig {
-        applicationId = AndroidConfig.ID
         minSdkVersion(AndroidConfig.MIN_SDK_VERSION)
         targetSdkVersion(AndroidConfig.TARGET_SDK_VERSION)
         buildToolsVersion(AndroidConfig.BUILD_TOOLS_VERSION)
@@ -18,6 +15,13 @@ android {
         versionCode = AndroidConfig.VERSION_CODE
         versionName = AndroidConfig.VERSION_NAME
         testInstrumentationRunner = AndroidConfig.TEST_INSTRUMENTATION_RUNNER
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments["room.schemaLocation"] = "$projectDir/schemas".toString()
+            }
+        }
+
     }
     buildTypes {
         getByName("release") {
@@ -30,33 +34,27 @@ android {
         targetCompatibility = JavaVersion.VERSION_1_8
     }
 
-    buildFeatures {
-        viewBinding = true
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
     }
 
-    testOptions {
-        animationsDisabled = true
+    buildFeatures {
+        dataBinding = true
     }
 }
-dependencies {
-    api(LibraryDependency.ANDROID_LEGACY_SUPPORT)
-    api(LibraryDependency.LIFECYCLE_EXTENSIONS)
-    api(LibraryDependency.LIFECYCLE_VIEW_MODEL_KTX)
 
+dependencies {
     api(LibraryDependency.TIMBER)
+
     api(LibraryDependency.NAVIGATION_FRAGMENT)
     api(LibraryDependency.NAVIGATION_UI)
 
-    api(LibraryDependency.RECYCLER_VIEW)
-    api(LibraryDependency.MATERIAL)
-
-    api(LibraryDependency.SUPPORT_CONSTRAINT_LAYOUT)
+    api(LibraryDependency.RETROFIT)
+    api(LibraryDependency.GSON_CONVERTER)
+    api(LibraryDependency.GSON)
 
     implementation(LibraryDependency.HILT)
     kapt(LibraryDependency.HILT_COMPILER)
-
-    implementation(project(":common"))
-    implementation(project(":feature_login"))
 
     addTestDependencies()
 }

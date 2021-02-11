@@ -1,12 +1,19 @@
-package com.nikolam.critiq.navigation;
+package com.nikolam.common.navigation;
 
 import android.net.Uri;
-
 import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Consumer;
 
+import javax.inject.Inject;
+import javax.inject.Singleton;
+
+@Singleton
 public class NavManager {
+
+    @Inject
+    public NavManager() {
+    }
 
     private Consumer<Uri> navEventListener = null;
 

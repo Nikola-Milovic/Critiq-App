@@ -43,9 +43,9 @@ object LibraryDependency {
     const val ANDROID_LEGACY_SUPPORT =
             "androidx.legacy:legacy-support-v4:${LibraryVersion.ANDROID_LEGACY_SUPPORT}"
 
-    const val NAVIGATION_FRAGMENT_KTX =
-            "androidx.navigation:navigation-fragment-ktx:${CoreVersion.NAVIGATION}"
-    const val NAVIGATION_UI_KTX = "androidx.navigation:navigation-ui-ktx:${CoreVersion.NAVIGATION}"
+    const val NAVIGATION_FRAGMENT =
+            "androidx.navigation:navigation-fragment:${CoreVersion.NAVIGATION}"
+    const val NAVIGATION_UI = "androidx.navigation:navigation-ui:${CoreVersion.NAVIGATION}"
 
     const val RETROFIT = "com.squareup.retrofit2:retrofit:${LibraryVersion.RETROFIT}"
     const val GSON_CONVERTER = "com.squareup.retrofit2:converter-gson:${LibraryVersion.RETROFIT}"
