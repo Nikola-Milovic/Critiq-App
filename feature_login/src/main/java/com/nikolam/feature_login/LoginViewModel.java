@@ -7,6 +7,8 @@ import androidx.lifecycle.ViewModel;
 
 import com.nikolam.common.navigation.DeepLinks;
 import com.nikolam.common.navigation.NavManager;
+import com.nikolam.data.models.RegistrationModel;
+import com.nikolam.domain.AuthRepository;
 
 import javax.inject.Inject;
 
@@ -18,10 +20,17 @@ import timber.log.Timber;
 public class LoginViewModel extends ViewModel {
 
     private final NavManager navManager;
+    private final AuthRepository repository;
 
     @Inject
-    public LoginViewModel(SavedStateHandle handle, NavManager navManager){
+    public LoginViewModel(SavedStateHandle handle, NavManager navManager, AuthRepository repository){
         this.navManager = navManager;
+        this.repository = repository;
+    }
+
+
+    public void localRegistration(String username, String email, String password){
+        repository.localRegistration(new RegistrationModel(email, username, password));
     }
 
     void navigateToMainScreen() {

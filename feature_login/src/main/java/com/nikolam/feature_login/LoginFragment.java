@@ -1,21 +1,16 @@
 package com.nikolam.feature_login;
 
-import androidx.lifecycle.ViewModelProvider;
-
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.nikolam.common.navigation.NavManager;
-import com.nikolam.feature_login.databinding.LoginFragmentBinding;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 
-import javax.inject.Inject;
+import com.nikolam.feature_login.databinding.LoginFragmentBinding;
 
 import dagger.hilt.android.AndroidEntryPoint;
 
@@ -32,12 +27,11 @@ public class LoginFragment extends Fragment {
         binding = LoginFragmentBinding.inflate(inflater, container, false);
         View view = binding.getRoot();
 
-        binding.loginButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                viewModel.navigateToMainScreen();
-            }
-        });
+        binding.registerButton.setOnClickListener(v -> viewModel.localRegistration(
+                binding.usernameEditTextRegister.getText().toString(),
+                binding.emailEditTextRegister.getText().toString(),
+                binding.passwordEditTextRegister.getText().toString()
+        ));
 
 
         return view;
