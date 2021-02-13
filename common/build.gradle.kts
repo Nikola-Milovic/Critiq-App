@@ -58,6 +58,7 @@ dependencies {
     kapt(LibraryDependency.HILT_COMPILER)
 
     implementation(LibraryDependency.RXJAVA)
+    implementation(LibraryDependency.RXJAVA_RETROFIT_ADAPTER)
     implementation(LibraryDependency.RXJAVA_ANDROID)
 
     addTestDependencies()

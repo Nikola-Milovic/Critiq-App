@@ -3,6 +3,8 @@ package com.nikolam.domain;
 import com.nikolam.data.models.RegistrationModel;
 import com.nikolam.data.models.RegistrationResponse;
 
+import io.reactivex.rxjava3.core.Observable;
+
 public interface AuthRepository {
-    void localRegistration(RegistrationModel data);
+    Observable<RegistrationResponse> localRegistration(RegistrationModel data);
 }

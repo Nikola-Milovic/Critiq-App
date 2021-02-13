@@ -33,7 +33,6 @@ public class LoginFragment extends Fragment {
                 binding.passwordEditTextRegister.getText().toString()
         ));
 
-
         return view;
     }
 

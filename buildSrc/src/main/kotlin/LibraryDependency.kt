@@ -78,4 +78,5 @@ object LibraryDependency {
 
     const val RXJAVA = "io.reactivex.rxjava3:rxjava:${LibraryVersion.RXJAVA}"
     const val RXJAVA_ANDROID = "io.reactivex.rxjava3:rxandroid:${LibraryVersion.RXJAVA_ANDROID}"
+    const val RXJAVA_RETROFIT_ADAPTER = "com.squareup.retrofit2:adapter-rxjava3:${LibraryVersion.RETROFIT}"
 }

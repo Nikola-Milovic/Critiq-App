@@ -30,15 +30,15 @@ public abstract class UseCase<T, Params> {
   private final PostExecutionThread postExecutionThread;
   private final CompositeDisposable disposables;
 
-  UseCase(ThreadExecutor threadExecutor, PostExecutionThread postExecutionThread) {
+  public UseCase(ThreadExecutor threadExecutor, PostExecutionThread postExecutionThread) {
     this.threadExecutor = threadExecutor;
     this.postExecutionThread = postExecutionThread;
     this.disposables = new CompositeDisposable();
   }
 
-  abstract Observable<T> buildUseCaseObservable(Params params);
+  protected abstract Observable<T> buildUseCaseObservable(Params params);
 
-  public void execute(DisposableObserver<T> observer, Params params) {
+   public void execute(DisposableObserver<T> observer, Params params) {
     assert observer!=null;
     final Observable<T> observable = this.buildUseCaseObservable(params)
         .subscribeOn(Schedulers.from(threadExecutor))

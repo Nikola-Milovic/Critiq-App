@@ -2,43 +2,57 @@ package com.nikolam.data;
 
 import com.nikolam.data.models.RegistrationModel;
 import com.nikolam.data.models.RegistrationResponse;
+import com.nikolam.domain.AuthLoginVerifier;
 import com.nikolam.domain.AuthRepository;
 
 import javax.inject.Inject;
-import javax.inject.Singleton;
 
-import dagger.hilt.android.AndroidEntryPoint;
-import dagger.hilt.android.scopes.FragmentScoped;
+import dagger.hilt.android.qualifiers.ApplicationContext;
 import dagger.hilt.android.scopes.ViewModelScoped;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
+import io.reactivex.rxjava3.annotations.NonNull;
+import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.observers.DisposableObserver;
 import timber.log.Timber;
 
 @ViewModelScoped
 public class AuthRepositoryImpl implements AuthRepository {
     private final AuthService service;
+    private final AuthLoginVerifier loginVerifier;
 
     @Inject
-    public AuthRepositoryImpl(AuthService service) {
+    public AuthRepositoryImpl(AuthService service, AuthLoginVerifier verifier) {
         this.service = service;
+        this.loginVerifier = verifier;
     }
 
     @Override
-    public void localRegistration(RegistrationModel data) {
+    public Observable<RegistrationResponse> localRegistration(RegistrationModel data) {
         Timber.d("Call");
-        Call<RegistrationResponse> call = service.localRegistration(data);
-        call.enqueue(new Callback<RegistrationResponse>() {
-            @Override
-            public void onResponse(Call<RegistrationResponse> call, Response<RegistrationResponse> response) {
-                Timber.d(response.toString());
-            }
 
-            @Override
-            public void onFailure(Call<RegistrationResponse> call, Throwable t) {
-                Timber.e(t);
-            }
-        });
+        Observable<RegistrationResponse> observable = service.localRegistration(data);
+
+        observable.subscribe(new LocalRegistrationObserver());
+
+
+        return observable;
     }
 
+
+    private final class LocalRegistrationObserver extends DisposableObserver<RegistrationResponse> {
+        @Override
+        public void onNext(@NonNull RegistrationResponse registrationResponse) {
+            loginVerifier.savePermalink(registrationResponse.getPermalink());
+            loginVerifier.saveToken(registrationResponse.getToken());
+        }
+
+        @Override
+        public void onError(@NonNull Throwable e) {
+            Timber.e(e);
+        }
+
+        @Override
+        public void onComplete() {
+            Timber.d("Complete repo");
+        }
+    }
 }

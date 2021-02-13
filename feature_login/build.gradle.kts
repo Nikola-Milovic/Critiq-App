@@ -57,6 +57,8 @@ dependencies {
     implementation(LibraryDependency.HILT)
     kapt(LibraryDependency.HILT_COMPILER)
 
+    implementation(LibraryDependency.RXJAVA)
+
     implementation(project(":common"))
 
     addTestDependencies()
