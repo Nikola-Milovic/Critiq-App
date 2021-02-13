@@ -25,6 +25,9 @@ private object LibraryVersion {
     const val FIREBASE_BOM = "26.2.0"
 
     const val VOLLEY = "1.1.1"
+
+    const val RXJAVA = "3.0.10"
+    const val RXJAVA_ANDROID = "3.0.0"
 }
 
 
@@ -72,4 +75,7 @@ object LibraryDependency {
 
     const val HILT = "com.google.dagger:hilt-android:${CoreVersion.HILT}"
     const val HILT_COMPILER = "com.google.dagger:hilt-android-compiler:${CoreVersion.HILT}"
+
+    const val RXJAVA = "io.reactivex.rxjava3:rxjava:${LibraryVersion.RXJAVA}"
+    const val RXJAVA_ANDROID = "io.reactivex.rxjava3:rxandroid:${LibraryVersion.RXJAVA_ANDROID}"
 }

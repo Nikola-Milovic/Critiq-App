@@ -59,5 +59,7 @@ dependencies {
     implementation(project(":feature_login"))
     implementation(project(":feature_main"))
 
+    debugImplementation("com.squareup.leakcanary:leakcanary-android:2.6")
+
     addTestDependencies()
 }

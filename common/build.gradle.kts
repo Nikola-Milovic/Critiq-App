@@ -57,5 +57,8 @@ dependencies {
     implementation(LibraryDependency.HILT)
     kapt(LibraryDependency.HILT_COMPILER)
 
+    implementation(LibraryDependency.RXJAVA)
+    implementation(LibraryDependency.RXJAVA_ANDROID)
+
     addTestDependencies()
 }
