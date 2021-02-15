@@ -3,15 +3,19 @@ package com.nikolam.feature_auth.presenter;
 import android.net.Uri;
 
 import androidx.lifecycle.SavedStateHandle;
-import androidx.lifecycle.ViewModel;
 
 import com.nikolam.common.navigation.DeepLinks;
 import com.nikolam.common.navigation.NavManager;
+import com.nikolam.common.presentation.BaseAction;
+import com.nikolam.common.presentation.BaseViewModel;
+import com.nikolam.common.presentation.BaseViewState;
 import com.nikolam.feature_auth.data.models.LoginResponse;
 import com.nikolam.feature_auth.data.models.RegistrationResponse;
 import com.nikolam.feature_auth.domain.AuthLoginVerifier;
 import com.nikolam.feature_auth.domain.LocalRegistrationUseCase;
 import com.nikolam.feature_auth.domain.TokenLoginUseCase;
+
+import org.jetbrains.annotations.NotNull;
 
 import javax.inject.Inject;
 
@@ -21,7 +25,7 @@ import io.reactivex.rxjava3.observers.DisposableObserver;
 import timber.log.Timber;
 
 @HiltViewModel
-public class AuthViewModel extends ViewModel {
+public class AuthViewModel extends BaseViewModel<AuthViewModel.ViewState, AuthViewModel.Action> {
 
     private final NavManager navManager;
     private final LocalRegistrationUseCase localRegistration;
@@ -32,6 +36,7 @@ public class AuthViewModel extends ViewModel {
     public AuthViewModel(SavedStateHandle handle, NavManager navManager, LocalRegistrationUseCase localRegistration,
                          TokenLoginUseCase tokenLogin,
                          AuthLoginVerifier verifier) {
+        super(new ViewState());
         this.navManager = navManager;
         this.localRegistration = localRegistration;
         this.verifier = verifier;
@@ -74,6 +79,46 @@ public class AuthViewModel extends ViewModel {
         super.onCleared();
     }
 
+    @NotNull
+    @Override
+    protected ViewState onReduceState(@NotNull AuthViewModel.Action action) {
+        return null;
+    }
+
+
+    protected static class ViewState implements BaseViewState {
+        boolean isSuccess = false;
+        boolean isLoading = true;
+        boolean isError = false;
+        int errno = -1;
+
+        public boolean isSuccess() {
+            return isSuccess;
+        }
+
+        public boolean isLoading() {
+            return isLoading;
+        }
+
+        public boolean isError() {
+            return isError;
+        }
+
+        public int getErrno() {
+            return errno;
+        }
+    }
+
+    protected abstract class Action implements BaseAction {
+        private Action() {
+        }
+
+        private final class LoginSuccess {
+
+        }
+
+    }
+
     private final class LocalRegistrationObserver extends DisposableObserver<RegistrationResponse> {
         @Override
         public void onNext(@NonNull RegistrationResponse registrationResponse) {
@@ -96,7 +141,7 @@ public class AuthViewModel extends ViewModel {
     private final class TokenLoginObserver extends DisposableObserver<LoginResponse> {
         @Override
         public void onNext(@NonNull LoginResponse loginResponse) {
-            if(loginResponse.getStatus() == 200){
+            if (loginResponse.getStatus() == 200) {
                 navigateToMainScreen();
             } else {
                 Timber.d("Login attempt was unsuccessful %s", loginResponse.toString());
