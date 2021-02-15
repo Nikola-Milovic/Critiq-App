@@ -56,7 +56,7 @@ dependencies {
     kapt(LibraryDependency.HILT_COMPILER)
 
     implementation(project(":common"))
-    implementation(project(":feature_login"))
+    implementation(project(":feature_auth"))
     implementation(project(":feature_main"))
 
     debugImplementation("com.squareup.leakcanary:leakcanary-android:2.6")

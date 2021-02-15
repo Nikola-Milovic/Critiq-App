@@ -3,7 +3,7 @@ rootProject.buildFileName = "build.gradle.kts"
 
 include(
         ":app",
-        ":feature_login",
+        ":feature_auth",
         ":common",
         ":feature_main"
 )

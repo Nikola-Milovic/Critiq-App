@@ -4,7 +4,7 @@
     app:startDestination="@id/loginFragment">
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.nikolam.feature_login.LoginFragment"
+        android:name="com.nikolam.feature_auth.presenter.AuthFragment"
         android:label="LoginFragment" />
     <fragment
         android:id="@+id/mainFragment"
