@@ -6,7 +6,9 @@ import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +18,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -31,7 +34,15 @@ import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.single.PermissionListener;
 import com.nikolam.feature_upload.databinding.UploadFragmentBinding;
 
+import java.io.File;
+import java.io.IOException;
+import java.net.URI;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Objects;
+
 import dagger.hilt.android.AndroidEntryPoint;
+import timber.log.Timber;
 
 @AndroidEntryPoint
 public class UploadFragment extends Fragment {
@@ -40,6 +51,9 @@ public class UploadFragment extends Fragment {
     static final int REQUEST_IMAGE_CAPTURE = 1;
 
     private UploadViewModel viewModel;
+
+    String currentPhotoPath;
+    Uri currentPhotoURI;
 
     private UploadFragmentBinding binding;
 
@@ -60,7 +74,6 @@ public class UploadFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         viewModel = new ViewModelProvider(this).get(UploadViewModel.class);
-        // TODO: Use the ViewModel
     }
 
     private void setupImagePicker() {
@@ -83,10 +96,25 @@ public class UploadFragment extends Fragment {
             requestStoragePermission();
             requestCameraPermission();
             Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-            try {
-                startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
-            } catch (ActivityNotFoundException e) {
-                // display error state to the user
+            // Ensure that there's a camera activity to handle the intent
+            if (takePictureIntent.resolveActivity(requireActivity().getPackageManager()) != null) {
+                // Create the File where the photo should go
+                File photoFile = null;
+                try {
+                    photoFile = createImageFile();
+                } catch (IOException ex) {
+                    // Error occurred while creating the File
+                }
+                // Continue only if the File was successfully created
+                if (photoFile != null) {
+                    Uri photoURI = FileProvider.getUriForFile(requireContext(),
+                            "com.nikolam.critiq.fileprovider",
+                            photoFile);
+                    takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
+                    startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+                    currentPhotoURI = photoURI;
+                    Glide.with(binding.selectedImage).load(photoURI).into(binding.selectedImage);
+                }
             }
         });
     }
@@ -99,15 +127,10 @@ public class UploadFragment extends Fragment {
                 return;
             }
 
+            currentPhotoURI = image.getUri();
             Glide.with(binding.selectedImage).load(image.getUri()).into(binding.selectedImage);
         }
-
-        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == Activity.RESULT_OK) {
-            Bundle extras = data.getExtras();
-            Bitmap imageBitmap = (Bitmap) extras.get("data");
-            binding.selectedImage.setImageBitmap(imageBitmap);
-        }
-
+        Timber.d(currentPhotoURI.toString());
 
         super.onActivityResult(requestCode, resultCode, data);
 
@@ -173,6 +196,22 @@ public class UploadFragment extends Fragment {
                         permissionToken.continuePermissionRequest();
                     }
                 }).check();
+    }
+
+    private File createImageFile() throws IOException {
+        // Create an image file name
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        String imageFileName = "JPEG_" + timeStamp + "_";
+        File storageDir = requireActivity().getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+        File image = File.createTempFile(
+                imageFileName,  /* prefix */
+                ".jpg",         /* suffix */
+                storageDir      /* directory */
+        );
+
+        // Save a file: path for use with ACTION_VIEW intents
+        currentPhotoPath = image.getAbsolutePath();
+        return image;
     }
 
     @Override

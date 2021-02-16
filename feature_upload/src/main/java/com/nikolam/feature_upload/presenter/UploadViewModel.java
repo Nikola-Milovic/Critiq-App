@@ -11,4 +11,8 @@ import dagger.hilt.android.lifecycle.HiltViewModel;
 public class UploadViewModel extends ViewModel {
     @Inject
     public UploadViewModel(SavedStateHandle handle){}
+
+    String currentPhotoPath;
+
+
 }
