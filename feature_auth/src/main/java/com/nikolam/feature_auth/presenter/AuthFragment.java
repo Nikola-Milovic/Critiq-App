@@ -42,4 +42,9 @@ public class AuthFragment extends Fragment {
         viewModel.checkSession();
     }
 
+    @Override
+    public void onDestroyView() {
+        binding = null;
+        super.onDestroyView();
+    }
 }

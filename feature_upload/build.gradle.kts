@@ -54,10 +54,16 @@ dependencies {
     api(LibraryDependency.GSON_CONVERTER)
     api(LibraryDependency.GSON)
 
-    api(LibraryDependency.SUPPORT_CONSTRAINT_LAYOUT)
-
     implementation(LibraryDependency.HILT)
     kapt(LibraryDependency.HILT_COMPILER)
+
+    api(LibraryDependency.DEXTER)
+    implementation(LibraryDependency.IMAGE_PICKER) {
+        this.exclude("com.github.bumptech.glide")
+    }
+    implementation(LibraryDependency.GLIDE)
+    annotationProcessor(LibraryDependency.GLIDE_COMPILER)
+
 
     implementation(project(":common"))
 

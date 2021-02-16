@@ -5,5 +5,6 @@ include(
         ":app",
         ":feature_auth",
         ":common",
-        ":feature_main"
+        ":feature_main",
+        ":feature_upload"
 )

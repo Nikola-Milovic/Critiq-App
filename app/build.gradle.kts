@@ -58,6 +58,7 @@ dependencies {
     implementation(project(":common"))
     implementation(project(":feature_auth"))
     implementation(project(":feature_main"))
+    implementation(project(":feature_upload"))
 
     debugImplementation("com.squareup.leakcanary:leakcanary-android:2.6")
 

@@ -14,4 +14,12 @@
             android:id="@+id/deepLink"
             app:uri="critiq://mainScreen" />
     </fragment>
+    <fragment
+        android:id="@+id/uploadFragment"
+        android:name="com.nikolam.feature_upload.presenter.UploadFragment"
+        android:label="UploadFragment">
+        <deepLink
+            android:id="@+id/deepLink2"
+            app:uri="critiq://upload" />
+    </fragment>
 </navigation>
