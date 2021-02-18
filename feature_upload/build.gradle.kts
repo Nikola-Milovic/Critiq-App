@@ -63,7 +63,8 @@ dependencies {
     }
     implementation(LibraryDependency.GLIDE)
     annotationProcessor(LibraryDependency.GLIDE_COMPILER)
-
+    
+    implementation(LibraryDependency.RXJAVA)
 
     implementation(project(":common"))
 

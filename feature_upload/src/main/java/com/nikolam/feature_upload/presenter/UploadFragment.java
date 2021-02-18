@@ -67,6 +67,10 @@ public class UploadFragment extends Fragment {
         setupImagePicker();
         setupCamera();
 
+        binding.uploadButton.setOnClickListener(v -> {
+            viewModel.uploadPost(currentPhotoURI);
+        });
+
         return view;
     }
 
@@ -113,6 +117,7 @@ public class UploadFragment extends Fragment {
                     takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
                     startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
                     currentPhotoURI = photoURI;
+                    currentPhotoPath = photoFile.getAbsolutePath();
                     Glide.with(binding.selectedImage).load(photoURI).into(binding.selectedImage);
                 }
             }
@@ -128,6 +133,7 @@ public class UploadFragment extends Fragment {
             }
 
             currentPhotoURI = image.getUri();
+            currentPhotoPath = image.getPath();
             Glide.with(binding.selectedImage).load(image.getUri()).into(binding.selectedImage);
         }
         Timber.d(currentPhotoURI.toString());

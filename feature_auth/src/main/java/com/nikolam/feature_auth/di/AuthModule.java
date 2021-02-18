@@ -19,7 +19,7 @@ public class AuthModule {
     @InstallIn(ViewModelComponent.class)
     interface repositoryBinder {
         @Binds
-        AuthRepository bindServletRequest(AuthRepositoryImpl repository);
+        AuthRepository bindAuthRepository(AuthRepositoryImpl repository);
     }
 
     @Provides

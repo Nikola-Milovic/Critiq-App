@@ -24,7 +24,7 @@ public class AuthRepositoryImpl implements AuthRepository {
     private final ThreadExecutor threadExecutor;
 
     @Inject
-    public AuthRepositoryImpl(AuthService service, AuthLoginVerifier verifier, ThreadExecutor executor, ThreadExecutor threadExecutor) {
+    public AuthRepositoryImpl(AuthService service, AuthLoginVerifier verifier, ThreadExecutor threadExecutor) {
         this.service = service;
         this.loginVerifier = verifier;
         this.threadExecutor = threadExecutor;
