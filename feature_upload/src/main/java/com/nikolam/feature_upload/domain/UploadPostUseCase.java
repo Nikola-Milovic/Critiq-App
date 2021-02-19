@@ -7,6 +7,8 @@ import com.nikolam.common.domain.executor.PostExecutionThread;
 import com.nikolam.common.domain.executor.ThreadExecutor;
 import com.nikolam.feature_upload.data.models.UploadResponse;
 
+import java.util.ArrayList;
+
 import javax.inject.Inject;
 
 import io.reactivex.rxjava3.core.Observable;
@@ -25,15 +27,21 @@ public class UploadPostUseCase extends UseCase<UploadResponse, UploadPostUseCase
     @Override
     protected Observable<UploadResponse> buildUseCaseObservable(Params params) {
         assert params != null;
-        return this.uploadRepository.uploadCritiqImage(params.fileUri);
+        return this.uploadRepository.uploadCritiqImage(params.fileUri, params.userID, params.tags, params.comment);
     }
 
     public static final class Params {
 
         private final Uri fileUri;
+        private final String userID;
+        private final String comment;
+        private final ArrayList<String> tags;
 
-        public Params(Uri fileUri) {
+        public Params(Uri fileUri, String userID, ArrayList<String> tags, String comment) {
             this.fileUri = fileUri;
+            this.userID = userID;
+            this.comment = comment;
+            this.tags = tags;
         }
     }
 }

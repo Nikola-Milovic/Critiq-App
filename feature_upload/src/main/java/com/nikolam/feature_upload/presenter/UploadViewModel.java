@@ -7,12 +7,16 @@ import androidx.lifecycle.ViewModel;
 
 import com.nikolam.feature_upload.data.models.UploadResponse;
 import com.nikolam.feature_upload.domain.UploadPostUseCase;
+import com.nikolam.feature_upload.presenter.tags.TagModel;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.inject.Inject;
+import javax.inject.Named;
 
 import dagger.hilt.android.lifecycle.HiltViewModel;
 import io.reactivex.rxjava3.annotations.NonNull;
-import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.observers.DisposableObserver;
 import timber.log.Timber;
 
@@ -20,15 +24,22 @@ import timber.log.Timber;
 public class UploadViewModel extends ViewModel {
 
     private final UploadPostUseCase uploadPostUseCase;
+    private final String userID;
 
     @Inject
-    public UploadViewModel(SavedStateHandle handle, UploadPostUseCase uploadPostUseCase){
+    public UploadViewModel(SavedStateHandle handle, UploadPostUseCase uploadPostUseCase, @Named("userID") String id){
         this.uploadPostUseCase = uploadPostUseCase;
+        this.userID = id;
     }
 
 
-    public void uploadPost(Uri fileUri){
-        uploadPostUseCase.execute(new UploadObserver(), new UploadPostUseCase.Params(fileUri));
+    public void uploadPost(Uri fileUri, List<TagModel> selectedTags, String comment){
+        ArrayList<String> tags = new ArrayList<>();
+        for (TagModel m : selectedTags){
+            tags.add(m.getTag().toLowerCase());
+        }
+
+        uploadPostUseCase.execute(new UploadObserver(), new UploadPostUseCase.Params(fileUri, userID, tags, comment));
     }
 
     @Override

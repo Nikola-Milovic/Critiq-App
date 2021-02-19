@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array
+        name="tag_options_array">
+        <item>Anatomy</item>
+        <item>Perspective</item>
+        <item>Landscape</item>
+        <item>Animals</item>
+        <item>Gesture</item>
+        <item>Character Design</item>
+        <item>Portrait</item>
+        <item>Sci-Fi</item>
+        <item>Color</item>
+        <item>Lineart</item>
+    </string-array>
+</resources>

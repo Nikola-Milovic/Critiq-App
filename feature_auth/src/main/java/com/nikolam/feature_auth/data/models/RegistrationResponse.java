@@ -4,10 +4,12 @@ public class RegistrationResponse {
 
     private String token;
     private String permalink;
+    private String id;
 
-    public RegistrationResponse(String token, String permalink) {
+    public RegistrationResponse(String token, String permalink, String id) {
         this.token = token;
         this.permalink = permalink;
+        this.id = id;
     }
 
     public String getToken() {
@@ -24,5 +26,9 @@ public class RegistrationResponse {
 
     public void setPermalink(String permalink) {
         this.permalink = permalink;
+    }
+
+    public String getId() {
+        return id;
     }
 }

@@ -3,32 +3,121 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
-    android:orientation="vertical"
     tools:context=".presenter.UploadFragment">
 
-    <ImageView
-        android:id="@+id/selected_image"
-        android:layout_width="300dp"
-        android:layout_height="300dp"
-        android:layout_margin="10dp" />
 
-    <Button
-        android:id="@+id/upload_from_camera_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Camera" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/upload_from_gallery_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Gallery" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="10dp">
 
-    <Button
-        android:id="@+id/upload_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Upload" />
+            <ImageView
+                android:id="@+id/selected_image"
+                android:layout_width="300dp"
+                android:layout_height="300dp"
+                android:layout_margin="10dp" />
+
+            <Button
+                android:id="@+id/upload_from_camera_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Camera" />
+
+            <Button
+                android:id="@+id/upload_from_gallery_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Gallery" />
+
+            <EditText
+                android:id="@+id/comment_editText"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="20dp"
+                android:hint="Add a short comment" />
+
+            <!-- Selected tags -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Selected Tags"
+                android:textAlignment="center"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/line"
+                style="?android:attr/listSeparatorTextViewStyle"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@+id/connect_help"
+                android:layout_margin="5dp"
+                android:background="#000"
+                android:gravity="center_horizontal"
+                android:paddingTop="5dip" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/selected_tags_recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <!-- Selected tags -->
+
+
+            <!-- Option tags -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Select Up to 5 Tags"
+                android:textAlignment="center"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/line2"
+                style="?android:attr/listSeparatorTextViewStyle"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@+id/connect_help"
+                android:layout_margin="5dp"
+                android:background="#000"
+                android:gravity="center_horizontal"
+                android:paddingTop="5dip" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/tag_options_recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="200dp" />
+
+            <EditText
+                android:id="@+id/tag_filter_editText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Search a tag" />
+
+            <ProgressBar
+                android:id="@+id/edit_progress_bar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:visibility="gone" />
+
+            <!-- Selected tags -->
+
+            <Button
+                android:id="@+id/upload_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Upload" />
+        </LinearLayout>
+
+
+    </ScrollView>
+
 
 </LinearLayout>

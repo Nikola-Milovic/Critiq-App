@@ -10,33 +10,43 @@ import dagger.hilt.android.qualifiers.ApplicationContext;
 import timber.log.Timber;
 
 @Singleton
-public class AuthLoginVerifier {
+public class AuthSharedPreferenceManager {
     private final SharedPreferences pref;
+    private final SharedPreferences propertiesPref;
 
     private static final String PREF_TAG = "AUTH";
     private static final String TOKEN = "TOKEN";
     private static final String PERMALINK = "PERMALINK";
 
+    private static final String PREF_TAG_PROPERTIES = "PROPERTIES";
+    private static final String USER_ID_KEY = "USERID";
+
     @Inject
-    public AuthLoginVerifier(@ApplicationContext Context context) {
+    public AuthSharedPreferenceManager(@ApplicationContext Context context) {
         this.pref = context.getSharedPreferences(PREF_TAG, Context.MODE_PRIVATE);
+        this.propertiesPref = context.getSharedPreferences(PREF_TAG_PROPERTIES, Context.MODE_PRIVATE);
     }
 
-    public void saveToken(String token){
+    public void saveToken(String token) {
         Timber.d("Save Token %s", token);
         this.pref.edit().putString(TOKEN, token).apply();
     }
 
-    public void savePermalink(String plink){
+    public void savePermalink(String plink) {
         Timber.d("Save permalink %s", plink);
         this.pref.edit().putString(PERMALINK, plink).apply();
     }
 
-    public String getTokenOrNull(){
+    public void saveUserID(String id) {
+        Timber.d("Save id %s", id);
+        this.propertiesPref.edit().putString(USER_ID_KEY, id).apply();
+    }
+
+    public String getTokenOrNull() {
         return this.pref.getString(TOKEN, null);
     }
 
-    public String getPermalink(){
+    public String getPermalink() {
         String permalink = this.pref.getString(PERMALINK, "");
         return permalink;
     }

@@ -66,6 +66,9 @@ dependencies {
     
     implementation(LibraryDependency.RXJAVA)
 
+    implementation("com.github.wrdlbrnft:sorted-list-adapter:0.3.0.27")
+    implementation("co.lujun:androidtagview:1.1.7")
+
     implementation(project(":common"))
 
     addTestDependencies()

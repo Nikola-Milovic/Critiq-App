@@ -17,6 +17,7 @@ import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.URI;
+import java.util.ArrayList;
 
 import javax.inject.Inject;
 
@@ -44,42 +45,20 @@ public class UploadRepositoryImpl implements UploadRepository {
 
 
     @Override
-    public Observable<UploadResponse> uploadCritiqImage(Uri fileUri) {
-        InputStream in = null;
+    public Observable<UploadResponse> uploadCritiqImage(Uri fileUri, String userID, ArrayList<String> tags, String comment){
+
+        File tempFile = createTempFileFromUri(fileUri);
+
+        JSONObject jsonData = new JSONObject();
+        JSONArray tagsJson = new JSONArray();
         try {
-            in = context.getContentResolver().openInputStream(fileUri);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        OutputStream out = null;
-        File tempFile = new File(context.getFilesDir() + "tempfile");
-        Timber.d(tempFile.toString());
-        try {
-            out = new FileOutputStream(tempFile);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        try {
-            byte[] buf = new byte[1024*4];
-            int len;
-            while ((len = in.read(buf)) > 0) {
-                out.write(buf, 0, len);
+            jsonData.put("id", userID);
+            jsonData.put("comment", comment);
+            for (String s : tags){
+                tagsJson.put(s);
             }
-            out.close();
-            in.close();
-        } catch (Exception e) {
-            Timber.e(e);
-        }
 
-        JSONObject data = new JSONObject();
-        JSONArray tags = new JSONArray();
-        try {
-            data.put("test", "test123");
-            tags.put(1);
-            tags.put(2);
-            tags.put(3);
-
-            data.put("tags", tags);
+            jsonData.put("tags", tagsJson);
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -91,8 +70,42 @@ public class UploadRepositoryImpl implements UploadRepository {
                 MultipartBody.Part.createFormData("image", tempFile.getName(), reqFile);
        // val userID = RequestBody.create(MediaType.parse("multipart/form-data"), id)
 
-        RequestBody d = MultipartBody.create(MediaType.parse("text/plain"), data.toString());
+        RequestBody data = MultipartBody.create(MediaType.parse("text/plain"), jsonData.toString());
 
-        return service.uploadCritiqImage(d, body);
+        return service.uploadCritiqImage(data, body);
+    }
+
+    private File createTempFileFromUri(Uri uri){
+        InputStream in = null;
+        try {
+            in = context.getContentResolver().openInputStream(uri);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        OutputStream out = null;
+        File tempFile = new File(context.getFilesDir() + "tempfile");
+
+        try {
+            out = new FileOutputStream(tempFile);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        try {
+            byte[] buf = new byte[1024*4];
+            int len;
+            while (true) {
+                assert in != null;
+                if (!((len = in.read(buf)) > 0)) break;
+                assert out != null;
+                out.write(buf, 0, len);
+            }
+            assert out != null;
+            out.close();
+            in.close();
+        } catch (Exception e) {
+            Timber.e(e);
+        }
+        return tempFile;
     }
 }

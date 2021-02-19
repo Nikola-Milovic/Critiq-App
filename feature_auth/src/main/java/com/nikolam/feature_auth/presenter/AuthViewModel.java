@@ -11,7 +11,7 @@ import com.nikolam.common.presentation.BaseViewModel;
 import com.nikolam.common.presentation.BaseViewState;
 import com.nikolam.feature_auth.data.models.LoginResponse;
 import com.nikolam.feature_auth.data.models.RegistrationResponse;
-import com.nikolam.feature_auth.domain.AuthLoginVerifier;
+import com.nikolam.feature_auth.domain.AuthSharedPreferenceManager;
 import com.nikolam.feature_auth.domain.LocalRegistrationUseCase;
 import com.nikolam.feature_auth.domain.TokenLoginUseCase;
 
@@ -30,29 +30,29 @@ public class AuthViewModel extends BaseViewModel<AuthViewModel.ViewState, AuthVi
     private final NavManager navManager;
     private final LocalRegistrationUseCase localRegistration;
     private final TokenLoginUseCase tokenLogin;
-    private final AuthLoginVerifier verifier;
+    private final AuthSharedPreferenceManager prefManager;
 
     @Inject
     public AuthViewModel(SavedStateHandle handle, NavManager navManager, LocalRegistrationUseCase localRegistration,
                          TokenLoginUseCase tokenLogin,
-                         AuthLoginVerifier verifier) {
+                         AuthSharedPreferenceManager prefManager) {
         super(new ViewState());
         this.navManager = navManager;
         this.localRegistration = localRegistration;
-        this.verifier = verifier;
+        this.prefManager = prefManager;
         this.tokenLogin = tokenLogin;
     }
 
 
     public void checkSession() {
-        String permalink = verifier.getPermalink();
+        String permalink = prefManager.getPermalink();
 
         if (permalink.isEmpty()) {
             Timber.d("permalink empty");
             // go to register
         } else {
             //check if token expired, if it did go to login else login
-            String token = verifier.getTokenOrNull();
+            String token = prefManager.getTokenOrNull();
             tokenLogin.execute(new TokenLoginObserver(), new TokenLoginUseCase.Params(token, permalink));
         }
 
@@ -122,8 +122,9 @@ public class AuthViewModel extends BaseViewModel<AuthViewModel.ViewState, AuthVi
     private final class LocalRegistrationObserver extends DisposableObserver<RegistrationResponse> {
         @Override
         public void onNext(@NonNull RegistrationResponse registrationResponse) {
-            verifier.savePermalink(registrationResponse.getPermalink());
-            verifier.saveToken(registrationResponse.getToken());
+            prefManager.savePermalink(registrationResponse.getPermalink());
+            prefManager.saveToken(registrationResponse.getToken());
+            prefManager.saveUserID(registrationResponse.getId());
         }
 
         @Override

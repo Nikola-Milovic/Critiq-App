@@ -12,7 +12,7 @@ import retrofit2.http.POST;
 import retrofit2.http.Query;
 
 public interface AuthService {
-    @POST(APIEndpoints.BaseAuthAPI + "/login")
+    @POST(APIEndpoints.BaseAuthAPI + "/register/local")
     Observable<RegistrationResponse> localRegistration(@Body RegistrationModel info);
 
     @GET(APIEndpoints.BaseAuthAPI + "/verify")

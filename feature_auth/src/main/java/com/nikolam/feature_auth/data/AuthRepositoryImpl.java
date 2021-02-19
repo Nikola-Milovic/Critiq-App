@@ -5,26 +5,23 @@ import com.nikolam.feature_auth.data.models.LoginResponse;
 import com.nikolam.feature_auth.data.models.LoginTokenModel;
 import com.nikolam.feature_auth.data.models.RegistrationModel;
 import com.nikolam.feature_auth.data.models.RegistrationResponse;
-import com.nikolam.feature_auth.domain.AuthLoginVerifier;
+import com.nikolam.feature_auth.domain.AuthSharedPreferenceManager;
 import com.nikolam.feature_auth.domain.AuthRepository;
 
 import javax.inject.Inject;
 
 import dagger.hilt.android.scopes.ViewModelScoped;
-import io.reactivex.rxjava3.annotations.NonNull;
 import io.reactivex.rxjava3.core.Observable;
-import io.reactivex.rxjava3.observers.DisposableObserver;
-import io.reactivex.rxjava3.schedulers.Schedulers;
 import timber.log.Timber;
 
 @ViewModelScoped
 public class AuthRepositoryImpl implements AuthRepository {
     private final AuthService service;
-    private final AuthLoginVerifier loginVerifier;
+    private final AuthSharedPreferenceManager loginVerifier;
     private final ThreadExecutor threadExecutor;
 
     @Inject
-    public AuthRepositoryImpl(AuthService service, AuthLoginVerifier verifier, ThreadExecutor threadExecutor) {
+    public AuthRepositoryImpl(AuthService service, AuthSharedPreferenceManager verifier, ThreadExecutor threadExecutor) {
         this.service = service;
         this.loginVerifier = verifier;
         this.threadExecutor = threadExecutor;
