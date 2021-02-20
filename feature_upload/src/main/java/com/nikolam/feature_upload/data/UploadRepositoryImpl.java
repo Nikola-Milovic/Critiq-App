@@ -4,6 +4,8 @@ import android.content.Context;
 import android.net.Uri;
 
 import com.nikolam.common.domain.executor.ThreadExecutor;
+import com.nikolam.data.db.AppRepository;
+import com.nikolam.data.db.models.PostDataModel;
 import com.nikolam.feature_upload.data.models.UploadResponse;
 import com.nikolam.feature_upload.domain.UploadRepository;
 
@@ -16,14 +18,16 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.net.URI;
 import java.util.ArrayList;
 
 import javax.inject.Inject;
 
 import dagger.hilt.android.qualifiers.ApplicationContext;
 import dagger.hilt.android.scopes.ViewModelScoped;
+import io.reactivex.rxjava3.annotations.NonNull;
 import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.core.Observer;
+import io.reactivex.rxjava3.disposables.Disposable;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -35,17 +39,19 @@ public class UploadRepositoryImpl implements UploadRepository {
     private final UploadService service;
     private final ThreadExecutor threadExecutor;
     private final Context context;
+    private final AppRepository appRepository;
 
     @Inject
-    public UploadRepositoryImpl(UploadService service, ThreadExecutor executor, @ApplicationContext Context context) {
+    public UploadRepositoryImpl(UploadService service, ThreadExecutor executor, @ApplicationContext Context context, AppRepository appRepository) {
         this.service = service;
         this.threadExecutor = executor;
         this.context = context;
+        this.appRepository = appRepository;
     }
 
 
     @Override
-    public Observable<UploadResponse> uploadCritiqImage(Uri fileUri, String userID, ArrayList<String> tags, String comment){
+    public Observable<Boolean> uploadCritiqImage(Uri fileUri, String userID, ArrayList<String> tags, String comment) {
 
         File tempFile = createTempFileFromUri(fileUri);
 
@@ -54,7 +60,7 @@ public class UploadRepositoryImpl implements UploadRepository {
         try {
             jsonData.put("id", userID);
             jsonData.put("comment", comment);
-            for (String s : tags){
+            for (String s : tags) {
                 tagsJson.put(s);
             }
 
@@ -68,14 +74,43 @@ public class UploadRepositoryImpl implements UploadRepository {
         RequestBody reqFile = RequestBody.create(MediaType.parse("multipart/form-data"), tempFile);
         MultipartBody.Part body =
                 MultipartBody.Part.createFormData("image", tempFile.getName(), reqFile);
-       // val userID = RequestBody.create(MediaType.parse("multipart/form-data"), id)
+        // val userID = RequestBody.create(MediaType.parse("multipart/form-data"), id)
 
         RequestBody data = MultipartBody.create(MediaType.parse("text/plain"), jsonData.toString());
 
-        return service.uploadCritiqImage(data, body);
+        service.uploadCritiqImage(data, body).subscribe(new Observer<UploadResponse>() {
+
+            @Override
+            public void onSubscribe(@NonNull Disposable d) {
+                Timber.d("Subscribed");
+            }
+
+            @Override
+            public void onNext(@NonNull UploadResponse uploadResponse) {
+                Timber.d(uploadResponse.toString());
+                appRepository.insertPost(new PostDataModel(
+                        uploadResponse.getAwsImageLink(),
+                        comment, tags
+                        , uploadResponse.getPostID()
+                ));
+            }
+
+            @Override
+            public void onError(@NonNull Throwable e) {
+                Timber.e(e);
+            }
+
+            @Override
+            public void onComplete() {
+                Timber.d("On complete");
+            }
+        });
+
+
+        return Observable.just(true);
     }
 
-    private File createTempFileFromUri(Uri uri){
+    private File createTempFileFromUri(Uri uri) {
         InputStream in = null;
         try {
             in = context.getContentResolver().openInputStream(uri);
@@ -92,7 +127,7 @@ public class UploadRepositoryImpl implements UploadRepository {
             e.printStackTrace();
         }
         try {
-            byte[] buf = new byte[1024*4];
+            byte[] buf = new byte[1024 * 4];
             int len;
             while (true) {
                 assert in != null;

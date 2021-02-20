@@ -3,8 +3,9 @@ rootProject.buildFileName = "build.gradle.kts"
 
 include(
         ":app",
-        ":feature_auth",
         ":common",
+        ":data",
         ":feature_main",
+        ":feature_auth",
         ":feature_upload"
 )

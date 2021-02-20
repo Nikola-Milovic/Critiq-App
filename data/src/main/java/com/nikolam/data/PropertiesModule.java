@@ -1,4 +1,4 @@
-package com.nikolam.common;
+package com.nikolam.data;
 
 import android.content.Context;
 import android.content.SharedPreferences;
