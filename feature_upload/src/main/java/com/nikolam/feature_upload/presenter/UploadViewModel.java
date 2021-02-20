@@ -48,11 +48,11 @@ public class UploadViewModel extends ViewModel {
         super.onCleared();
     }
 
-    private static class UploadObserver extends DisposableObserver<UploadResponse>{
+    private static class UploadObserver extends DisposableObserver<Boolean>{
 
         @Override
-        public void onNext(@NonNull UploadResponse uploadResponse) {
-            Timber.d("Upload response is %s", uploadResponse.toString());
+        public void onNext(@NonNull Boolean bool) {
+            Timber.d("Upload response is %s", bool);
         }
 
         @Override

@@ -21,7 +21,7 @@ private object LibraryVersion {
     const val GLIDE = "4.9.0"
     const val GSON = "2.8.6"
 
-    const val ROOM = "2.2.6"
+    const val ROOM = "2.3.0-beta02"
     const val FIREBASE_BOM = "26.2.0"
 
     const val VOLLEY = "1.1.1"
@@ -71,7 +71,7 @@ object LibraryDependency {
 
     const val ROOM = "androidx.room:room-runtime:${LibraryVersion.ROOM}"
     const val ROOM_COMPILER = "androidx.room:room-compiler:${LibraryVersion.ROOM}"
-    const val ROOM_KTX = "androidx.room:room-ktx:${LibraryVersion.ROOM}"
+    const val ROOM_RXJAVA = "androidx.room:room-rxjava3:${LibraryVersion.ROOM}"
 
     const val HILT = "com.google.dagger:hilt-android:${CoreVersion.HILT}"
     const val HILT_COMPILER = "com.google.dagger:hilt-android-compiler:${CoreVersion.HILT}"

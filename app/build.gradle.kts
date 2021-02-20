@@ -56,6 +56,7 @@ dependencies {
     kapt(LibraryDependency.HILT_COMPILER)
 
     implementation(project(":common"))
+    implementation(project(":data"))
     implementation(project(":feature_auth"))
     implementation(project(":feature_main"))
     implementation(project(":feature_upload"))

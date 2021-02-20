@@ -13,7 +13,7 @@ import javax.inject.Inject;
 
 import io.reactivex.rxjava3.core.Observable;
 
-public class UploadPostUseCase extends UseCase<UploadResponse, UploadPostUseCase.Params> {
+public class UploadPostUseCase extends UseCase<Boolean, UploadPostUseCase.Params> {
 
     private final UploadRepository uploadRepository;
 
@@ -25,7 +25,7 @@ public class UploadPostUseCase extends UseCase<UploadResponse, UploadPostUseCase
     }
 
     @Override
-    protected Observable<UploadResponse> buildUseCaseObservable(Params params) {
+    protected Observable<Boolean> buildUseCaseObservable(Params params) {
         assert params != null;
         return this.uploadRepository.uploadCritiqImage(params.fileUri, params.userID, params.tags, params.comment);
     }

@@ -57,20 +57,15 @@ dependencies {
     implementation(LibraryDependency.HILT)
     kapt(LibraryDependency.HILT_COMPILER)
 
-    api(LibraryDependency.DEXTER)
-    implementation(LibraryDependency.IMAGE_PICKER) {
-        this.exclude("com.github.bumptech.glide")
-    }
-    implementation(LibraryDependency.GLIDE)
-    annotationProcessor(LibraryDependency.GLIDE_COMPILER)
-    
     implementation(LibraryDependency.RXJAVA)
+    implementation(LibraryDependency.RXJAVA_RETROFIT_ADAPTER)
+    implementation(LibraryDependency.RXJAVA_ANDROID)
 
-    implementation("com.github.wrdlbrnft:sorted-list-adapter:0.3.0.27")
-    implementation("co.lujun:androidtagview:1.1.7")
+    implementation(LibraryDependency.ROOM)
+    kapt(LibraryDependency.ROOM_COMPILER)
+    implementation(LibraryDependency.ROOM_RXJAVA)
 
     implementation(project(":common"))
-    implementation(project(":data"))
 
     addTestDependencies()
 }
