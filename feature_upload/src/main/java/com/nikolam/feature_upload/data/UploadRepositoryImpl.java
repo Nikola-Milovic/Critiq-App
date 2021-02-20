@@ -102,6 +102,7 @@ public class UploadRepositoryImpl implements UploadRepository {
             public void onError(@NonNull Throwable e) {
                 Timber.e(e);
                 subject.onError(e);
+
             }
 
             @Override
@@ -110,7 +111,6 @@ public class UploadRepositoryImpl implements UploadRepository {
                 subject.onComplete();
             }
         });
-
 
         return subject;
     }
