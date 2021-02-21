@@ -37,4 +37,24 @@ public class PostDataModel {
         this.tags = tags;
         this.objectID = objectID;
     }
+
+    public int getUid() {
+        return uid;
+    }
+
+    public String getAwsImageLink() {
+        return awsImageLink;
+    }
+
+    public String getComment() {
+        return comment;
+    }
+
+    public List<String> getTags() {
+        return tags;
+    }
+
+    public String getObjectID() {
+        return objectID;
+    }
 }

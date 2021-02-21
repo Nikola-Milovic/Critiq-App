@@ -27,4 +27,9 @@ public class MainViewModel extends ViewModel {
         Uri uri = Uri.parse(DeepLinks.UPLOAD_DEEPLINK);
         navManager.navigate(uri);
     }
+
+    void navigateToMyPosts() {
+        Uri uri = Uri.parse(DeepLinks.MY_POSTS_DEEPLINK);
+        navManager.navigate(uri);
+    }
 }

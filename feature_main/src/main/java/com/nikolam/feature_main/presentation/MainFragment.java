@@ -34,6 +34,10 @@ public class MainFragment extends Fragment {
             viewModel.navigateToUpload();
         });
 
+        binding.myPostsButton.setOnClickListener(v -> {
+            viewModel.navigateToMyPosts();
+        });
+
         return view;
     }
 

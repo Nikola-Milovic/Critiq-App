@@ -9,7 +9,6 @@
 
     <LinearLayout
         android:orientation="horizontal"
-        android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -17,6 +16,16 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <ImageButton
+            android:layout_weight="0.5"
+            android:id="@+id/my_posts_button"
+            android:src="@drawable/ic_save"
+            android:scaleX="2"
+            android:scaleY="2"
+            android:layout_width="50dp"
+            android:layout_height="50dp"/>
+
+        <ImageButton
+            android:layout_weight="0.5"
             android:id="@+id/upload_button"
             android:src="@drawable/ic_baseline_add_24"
             android:scaleX="2"

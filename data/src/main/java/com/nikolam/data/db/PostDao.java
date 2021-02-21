@@ -9,12 +9,13 @@ import com.nikolam.data.db.models.PostDataModel;
 import java.util.List;
 
 import io.reactivex.rxjava3.core.Completable;
+import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.core.Single;
 
 @Dao
 interface PostDao {
     @Query("SELECT * FROM myPosts")
-    Single<List<PostDataModel>> getMyPosts();
+    Observable<List<PostDataModel>> getMyPosts();
 
     @Insert
     Completable insertPost(PostDataModel post);
