@@ -1,28 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal" android:layout_width="wrap_content"
-    android:padding="10dp"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     android:layout_margin="5dp"
-    android:backgroundTint="#399cbd"
     android:background="@drawable/rounded_corners"
-    android:layout_height="wrap_content">
+    android:backgroundTint="#399cbd"
+    android:orientation="horizontal"
+    android:padding="10dp">
 
     <TextView
-        android:text="Anatomy"
         android:id="@+id/tag_text"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:textColor="@color/ef_white"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:text="Anatomy"
+        android:textColor="@color/ef_white"
+        android:textSize="18sp"
+        android:textStyle="bold" />
 
     <ImageView
-        android:paddingLeft="5dp"
-        android:tint="@color/ef_white"
-        android:src="@drawable/ic_plus"
-        android:scaleY="1.2"
-        android:scaleX="1.2"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:paddingLeft="5dp"
+        android:scaleX="1.2"
+        android:scaleY="1.2"
+        android:src="@drawable/ic_plus"
+        android:tint="@color/ef_white" />
 
 </LinearLayout>

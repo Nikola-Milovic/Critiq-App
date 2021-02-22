@@ -13,10 +13,6 @@ import java.util.Comparator;
 
 public class TagAdapter extends SortedListAdapter<TagModel> {
 
-    public interface Listener {
-        void OnTagClickedListener(TagModel model);
-    }
-
     private final Listener mListener;
 
     public TagAdapter(Context context, Comparator<TagModel> comparator, Listener listener) {
@@ -29,5 +25,9 @@ public class TagAdapter extends SortedListAdapter<TagModel> {
     protected ViewHolder<? extends TagModel> onCreateViewHolder(@NonNull LayoutInflater inflater, @NonNull ViewGroup parent, int viewType) {
         final TagOptionItemBinding binding = TagOptionItemBinding.inflate(inflater, parent, false);
         return new TagViewHolder(binding, mListener);
+    }
+
+    public interface Listener {
+        void OnTagClickedListener(TagModel model);
     }
 }

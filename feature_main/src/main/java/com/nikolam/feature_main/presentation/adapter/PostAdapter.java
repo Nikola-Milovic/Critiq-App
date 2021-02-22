@@ -25,7 +25,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostViewHolder> {
         this.postClickListener = listener;
     }
 
-    public void addPosts(List<PostDomainModel> data){
+    public void addPosts(List<PostDomainModel> data) {
         posts.clear();
         posts.addAll(data);
         notifyDataSetChanged();
@@ -43,7 +43,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostViewHolder> {
     public void onBindViewHolder(PostViewHolder holder, int position) {
         PostDomainModel data = posts.get(position);
         try {
-            holder.bind(postClickListener, data );
+            holder.bind(postClickListener, data);
         } catch (Exception e) {
             e.printStackTrace();
         }

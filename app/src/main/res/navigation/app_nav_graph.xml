@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/app_nav_graph"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/app_nav_graph"
     app:startDestination="@id/loginFragment">
     <fragment
         android:id="@+id/loginFragment"
@@ -29,5 +30,16 @@
         <deepLink
             android:id="@+id/deepLink3"
             app:uri="critiq://myPosts" />
+    </fragment>
+    <fragment
+        android:id="@+id/postDetailFragment"
+        android:name="com.nikolam.feature_post_detail.presenter.PostDetailFragment"
+        android:label="PostDetailFragment">
+        <argument
+            android:name="id"
+            app:argType="string" />
+        <deepLink
+            android:id="@+id/deepLink4"
+            app:uri="critiq://postDetail/{id}" />
     </fragment>
 </navigation>

@@ -9,5 +9,4 @@ import dagger.hilt.components.SingletonComponent;
 public class AppModule {
 
 
-
 }

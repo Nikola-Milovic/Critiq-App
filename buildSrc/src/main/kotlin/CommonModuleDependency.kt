@@ -6,7 +6,7 @@ import org.gradle.api.artifacts.dsl.DependencyHandler
 Define common dependencies, so they can be easily updated across feature modules
  */
 fun DependencyHandler.addTestDependencies() {
-   // testImplementation(project(":library_test_utils"))
+    // testImplementation(project(":library_test_utils"))
 
     testImplementation(TestLibraryDependency.JUNIT)
     androidTestImplementation(TestLibraryDependency.TEST_RUNNER)

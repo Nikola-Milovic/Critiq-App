@@ -11,10 +11,12 @@ import io.reactivex.rxjava3.core.Scheduler;
 @Singleton
 public class UIThread implements PostExecutionThread {
 
-  @Inject
-  UIThread() {}
+    @Inject
+    UIThread() {
+    }
 
-  @Override public Scheduler getScheduler() {
-    return AndroidSchedulers.mainThread();
-  }
+    @Override
+    public Scheduler getScheduler() {
+        return AndroidSchedulers.mainThread();
+    }
 }

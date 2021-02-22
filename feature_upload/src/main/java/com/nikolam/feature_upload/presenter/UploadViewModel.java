@@ -5,7 +5,6 @@ import android.net.Uri;
 import androidx.lifecycle.SavedStateHandle;
 import androidx.lifecycle.ViewModel;
 
-import com.nikolam.feature_upload.data.models.UploadResponse;
 import com.nikolam.feature_upload.domain.UploadPostUseCase;
 import com.nikolam.feature_upload.presenter.tags.TagModel;
 
@@ -27,15 +26,15 @@ public class UploadViewModel extends ViewModel {
     private final String userID;
 
     @Inject
-    public UploadViewModel(SavedStateHandle handle, UploadPostUseCase uploadPostUseCase, @Named("userID") String id){
+    public UploadViewModel(SavedStateHandle handle, UploadPostUseCase uploadPostUseCase, @Named("userID") String id) {
         this.uploadPostUseCase = uploadPostUseCase;
         this.userID = id;
     }
 
 
-    public void uploadPost(Uri fileUri, List<TagModel> selectedTags, String comment){
+    public void uploadPost(Uri fileUri, List<TagModel> selectedTags, String comment) {
         ArrayList<String> tags = new ArrayList<>();
-        for (TagModel m : selectedTags){
+        for (TagModel m : selectedTags) {
             tags.add(m.getTag().toLowerCase());
         }
 
@@ -48,7 +47,7 @@ public class UploadViewModel extends ViewModel {
         super.onCleared();
     }
 
-    private static class UploadObserver extends DisposableObserver<Boolean>{
+    private static class UploadObserver extends DisposableObserver<Boolean> {
 
         @Override
         public void onNext(@NonNull Boolean bool) {

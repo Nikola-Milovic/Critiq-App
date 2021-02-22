@@ -5,7 +5,6 @@ import android.net.Uri;
 import com.nikolam.common.domain.UseCase;
 import com.nikolam.common.domain.executor.PostExecutionThread;
 import com.nikolam.common.domain.executor.ThreadExecutor;
-import com.nikolam.feature_upload.data.models.UploadResponse;
 
 import java.util.ArrayList;
 

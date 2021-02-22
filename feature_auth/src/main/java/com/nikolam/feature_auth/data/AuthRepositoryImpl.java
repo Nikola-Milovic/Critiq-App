@@ -5,8 +5,8 @@ import com.nikolam.feature_auth.data.models.LoginResponse;
 import com.nikolam.feature_auth.data.models.LoginTokenModel;
 import com.nikolam.feature_auth.data.models.RegistrationModel;
 import com.nikolam.feature_auth.data.models.RegistrationResponse;
-import com.nikolam.feature_auth.domain.AuthSharedPreferenceManager;
 import com.nikolam.feature_auth.domain.AuthRepository;
+import com.nikolam.feature_auth.domain.AuthSharedPreferenceManager;
 
 import javax.inject.Inject;
 

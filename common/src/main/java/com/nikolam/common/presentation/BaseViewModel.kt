@@ -9,7 +9,7 @@ import kotlin.properties.Delegates
 fun <T> MutableLiveData<T>.asLiveData() = this as LiveData<T>
 
 abstract class BaseViewModel<ViewState : BaseViewState, ViewAction : BaseAction>(initialState: ViewState) :
-    ViewModel() {
+        ViewModel() {
 
     private val stateMutableLiveData = MutableLiveData<ViewState>()
     val stateLiveData = stateMutableLiveData.asLiveData()

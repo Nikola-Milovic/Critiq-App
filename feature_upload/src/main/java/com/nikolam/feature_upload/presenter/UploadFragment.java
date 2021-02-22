@@ -60,27 +60,41 @@ import timber.log.Timber;
 @AndroidEntryPoint
 public class UploadFragment extends Fragment implements SortedListAdapter.Callback {
 
-    private static final int CAMERA_REQUEST = 1888;
     static final int REQUEST_IMAGE_CAPTURE = 1;
-
-    private UploadViewModel viewModel;
-
-    String currentPhotoPath;
-    Uri currentPhotoURI;
-
-    private UploadFragmentBinding binding;
-
-    private TagAdapter tagAdapter;
-    private TagAdapter selectedAdapter;
-    private Animator animator;
-
-    private List<TagModel> tags;
-    private List<TagModel> selectedTags;
-
+    private static final int CAMERA_REQUEST = 1888;
     private static final Comparator<TagModel> COMPARATOR = new SortedListAdapter.ComparatorBuilder<TagModel>()
             .setOrderForModel(TagModel.class, (a, b) -> a.getTag().compareTo(b.getTag()))
             .build();
+    String currentPhotoPath;
+    Uri currentPhotoURI;
+    private UploadViewModel viewModel;
+    private UploadFragmentBinding binding;
+    private TagAdapter tagAdapter;
+    private TagAdapter selectedAdapter;
+    private Animator animator;
+    private List<TagModel> tags;
+    private List<TagModel> selectedTags;
 
+    private static List<TagModel> filter(List<TagModel> models, String query) {
+        final String lowerCaseQuery = query.toLowerCase();
+
+        final List<TagModel> filteredModelList = new ArrayList<>();
+        for (TagModel model : models) {
+            final String text = model.getTag().toLowerCase();
+            if (text.contains(lowerCaseQuery)) {
+                filteredModelList.add(model);
+            }
+        }
+        return filteredModelList;
+    }
+
+    public static void hideSoftKeyboard(Activity activity) {
+        if (activity.getCurrentFocus() == null) {
+            return;
+        }
+        InputMethodManager inputMethodManager = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
+        inputMethodManager.hideSoftInputFromWindow(activity.getCurrentFocus().getWindowToken(), 0);
+    }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
@@ -319,28 +333,6 @@ public class UploadFragment extends Fragment implements SortedListAdapter.Callba
         currentPhotoPath = image.getAbsolutePath();
         return image;
     }
-
-    private static List<TagModel> filter(List<TagModel> models, String query) {
-        final String lowerCaseQuery = query.toLowerCase();
-
-        final List<TagModel> filteredModelList = new ArrayList<>();
-        for (TagModel model : models) {
-            final String text = model.getTag().toLowerCase();
-            if (text.contains(lowerCaseQuery)) {
-                filteredModelList.add(model);
-            }
-        }
-        return filteredModelList;
-    }
-
-    public static void hideSoftKeyboard(Activity activity) {
-        if (activity.getCurrentFocus() == null) {
-            return;
-        }
-        InputMethodManager inputMethodManager = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
-        inputMethodManager.hideSoftInputFromWindow(activity.getCurrentFocus().getWindowToken(), 0);
-    }
-
 
     @Override
     public void onDestroyView() {

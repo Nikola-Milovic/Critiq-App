@@ -5,11 +5,10 @@ import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 
-import com.nikolam.critiq.databinding.ActivityMainBinding;
 import com.nikolam.common.navigation.NavManager;
+import com.nikolam.critiq.databinding.ActivityMainBinding;
 
 import javax.inject.Inject;
 
@@ -19,12 +18,10 @@ import timber.log.Timber;
 @AndroidEntryPoint
 public class MainActivity extends AppCompatActivity {
 
-    private NavController navController ; //
-
-    private ActivityMainBinding binding;
-
     @Inject
     NavManager navManager;
+    private NavController navController; //
+    private ActivityMainBinding binding;
 
     private void initNavManager() {
         Timber.d("Nav manager is %s", navManager.toString());
@@ -32,8 +29,8 @@ public class MainActivity extends AppCompatActivity {
                 navController.navigate(uri)
         );
 
-        navManager.setPopBackStack ((Void) ->
-            navController.popBackStack()
+        navManager.setPopBackStack((Void) ->
+                navController.popBackStack()
         );
     }
 

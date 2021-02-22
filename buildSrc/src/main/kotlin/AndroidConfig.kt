@@ -9,7 +9,7 @@ object AndroidConfig {
 
     const val ID = "com.nikolam.critiq"
     const val TEST_INSTRUMENTATION_RUNNER =
-        "android.support.test.runner.AndroidJUnitRunner" //"android.support.test.runner.AndroidJUnitRunner"
+            "android.support.test.runner.AndroidJUnitRunner" //"android.support.test.runner.AndroidJUnitRunner"
 }
 
 interface BuildType {

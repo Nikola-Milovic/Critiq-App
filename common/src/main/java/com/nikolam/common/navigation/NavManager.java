@@ -1,20 +1,21 @@
 package com.nikolam.common.navigation;
 
 import android.net.Uri;
+
 import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Consumer;
 
 import javax.inject.Inject;
-import javax.inject.Singleton;
 
 public class NavManager {
+
+    private Consumer<Uri> navEventListener = null;
+    private Consumer<Void> popBackStackListener = null;
 
     @Inject
     public NavManager() {
     }
-
-    private Consumer<Uri> navEventListener = null;
 
     public void navigate(final Uri uri) {
         Optional.ofNullable(this.navEventListener).ifPresent(it -> it.accept(uri));
@@ -23,8 +24,6 @@ public class NavManager {
     public void setOnNavEvent(final Consumer<Uri> navEventListener) {
         this.navEventListener = Objects.requireNonNull(navEventListener);
     }
-
-    private Consumer<Void> popBackStackListener = null;
 
     public void popBackStack() {
         popBackStackListener.accept(null);

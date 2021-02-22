@@ -8,18 +8,13 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import com.nikolam.data.db.models.PostDataModel;
 import com.nikolam.feature_my_posts.databinding.MyPostsFragmentBinding;
 import com.nikolam.feature_my_posts.domain.models.PostDomainModel;
 import com.nikolam.feature_my_posts.presenter.adapter.PostAdapter;
 import com.nikolam.feature_my_posts.presenter.adapter.PostClickListener;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import dagger.hilt.android.AndroidEntryPoint;
 

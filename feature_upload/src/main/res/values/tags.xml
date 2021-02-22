@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string-array
-        name="tag_options_array">
+    <string-array name="tag_options_array">
         <item>Anatomy</item>
         <item>Perspective</item>
         <item>Landscape</item>

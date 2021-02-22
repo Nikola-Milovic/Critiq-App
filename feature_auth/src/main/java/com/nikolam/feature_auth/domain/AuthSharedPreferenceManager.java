@@ -11,15 +11,13 @@ import timber.log.Timber;
 
 @Singleton
 public class AuthSharedPreferenceManager {
-    private final SharedPreferences pref;
-    private final SharedPreferences propertiesPref;
-
     private static final String PREF_TAG = "AUTH";
     private static final String TOKEN = "TOKEN";
     private static final String PERMALINK = "PERMALINK";
-
     private static final String PREF_TAG_PROPERTIES = "PROPERTIES";
     private static final String USER_ID_KEY = "USERID";
+    private final SharedPreferences pref;
+    private final SharedPreferences propertiesPref;
 
     @Inject
     public AuthSharedPreferenceManager(@ApplicationContext Context context) {

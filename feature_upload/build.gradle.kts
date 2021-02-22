@@ -63,7 +63,7 @@ dependencies {
     }
     implementation(LibraryDependency.GLIDE)
     annotationProcessor(LibraryDependency.GLIDE_COMPILER)
-    
+
     implementation(LibraryDependency.RXJAVA)
 
     implementation("com.github.wrdlbrnft:sorted-list-adapter:0.3.0.27")

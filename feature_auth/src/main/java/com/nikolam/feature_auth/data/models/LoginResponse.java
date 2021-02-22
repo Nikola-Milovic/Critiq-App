@@ -2,8 +2,8 @@ package com.nikolam.feature_auth.data.models;
 
 public class LoginResponse {
 
-   private int status;
-   private String message;
+    private int status;
+    private String message;
 
     public LoginResponse(int status, String message) {
         this.status = status;

@@ -29,14 +29,13 @@ public class LocalRegistrationUseCase extends UseCase<RegistrationResponse, Loca
 
     public static final class Params {
 
+        private final String email;
+        private final String username;
+        private final String password;
         public Params(String email, String username, String password) {
             this.email = email;
             this.username = username;
             this.password = password;
         }
-
-        private final String email;
-        private final String username;
-        private final String password;
     }
 }

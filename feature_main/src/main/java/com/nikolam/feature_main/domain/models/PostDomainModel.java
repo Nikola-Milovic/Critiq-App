@@ -48,6 +48,7 @@ public class PostDomainModel {
     public String getThumbnailLink() {
         return thumbnailLink;
     }
+
     public String getUserID() {
         return userID;
     }

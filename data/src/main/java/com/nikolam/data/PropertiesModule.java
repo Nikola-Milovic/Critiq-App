@@ -21,7 +21,8 @@ public class PropertiesModule {
     private String userId;
 
     @Provides
-    @Named("userID") String provideUserID(@ApplicationContext Context context) {
+    @Named("userID")
+    String provideUserID(@ApplicationContext Context context) {
         if (userId != null) {
             return userId;
         }

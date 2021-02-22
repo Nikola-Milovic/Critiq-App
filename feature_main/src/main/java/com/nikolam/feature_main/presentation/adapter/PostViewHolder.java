@@ -17,12 +17,13 @@ public class PostViewHolder extends RecyclerView.ViewHolder {
     private PostViewHolder(View itemView) {
         super(itemView);
     }
-    PostViewHolder(PostItemBinding binding){
+
+    PostViewHolder(PostItemBinding binding) {
         super(binding.getRoot());
         this.binding = binding;
     }
 
-    public void bind(PostClickListener l, PostDomainModel m){
+    public void bind(PostClickListener l, PostDomainModel m) {
         this.listener = l;
         this.model = m;
 
@@ -30,7 +31,7 @@ public class PostViewHolder extends RecyclerView.ViewHolder {
 
         StringBuilder sb = new StringBuilder();
 
-        for (String s : m.getTags()){
+        for (String s : m.getTags()) {
             sb.append(s).append(" ");
         }
 

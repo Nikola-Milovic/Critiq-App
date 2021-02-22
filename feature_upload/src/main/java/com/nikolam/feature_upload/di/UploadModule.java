@@ -15,18 +15,18 @@ import retrofit2.Retrofit;
 @InstallIn(ViewModelComponent.class)
 public class UploadModule {
 
-    @Module
-    @InstallIn(ViewModelComponent.class)
-    interface repositoryBinder {
-        @Binds
-        UploadRepository bindUploadRepository(UploadRepositoryImpl repository);
-    }
-
     @Provides
     public UploadService provideUploadService(
             Retrofit retrofit
     ) {
         return retrofit.create(UploadService.class);
+    }
+
+    @Module
+    @InstallIn(ViewModelComponent.class)
+    interface repositoryBinder {
+        @Binds
+        UploadRepository bindUploadRepository(UploadRepositoryImpl repository);
     }
 
 };

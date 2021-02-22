@@ -1,26 +1,20 @@
 package com.nikolam.feature_main.presentation;
 
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
-
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.nikolam.feature_main.R;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+
 import com.nikolam.feature_main.databinding.MainFragmentBinding;
 import com.nikolam.feature_main.domain.models.PostDomainModel;
 import com.nikolam.feature_main.presentation.adapter.PostAdapter;
 import com.nikolam.feature_main.presentation.adapter.PostClickListener;
-
-import java.util.List;
 
 import dagger.hilt.android.AndroidEntryPoint;
 
@@ -32,6 +26,7 @@ public class MainFragment extends Fragment implements PostClickListener {
     private MainFragmentBinding binding;
 
     private PostAdapter postAdapter;
+
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
@@ -75,6 +70,6 @@ public class MainFragment extends Fragment implements PostClickListener {
 
     @Override
     public void onPostClicked(PostDomainModel model) {
-
+        viewModel.navigateToAPost(model.objectID);
     }
 }

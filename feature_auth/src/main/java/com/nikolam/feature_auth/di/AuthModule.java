@@ -15,18 +15,18 @@ import retrofit2.Retrofit;
 @InstallIn(ViewModelComponent.class)
 public class AuthModule {
 
-    @Module
-    @InstallIn(ViewModelComponent.class)
-    interface repositoryBinder {
-        @Binds
-        AuthRepository bindAuthRepository(AuthRepositoryImpl repository);
-    }
-
     @Provides
     public AuthService provideAuthService(
             Retrofit retrofit
     ) {
         return retrofit.create(AuthService.class);
+    }
+
+    @Module
+    @InstallIn(ViewModelComponent.class)
+    interface repositoryBinder {
+        @Binds
+        AuthRepository bindAuthRepository(AuthRepositoryImpl repository);
     }
 
 };

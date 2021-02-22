@@ -34,7 +34,7 @@ public class MainViewModel extends ViewModel {
     };
 
     @Inject
-    public MainViewModel(SavedStateHandle handle, NavManager navManager, GetPostsUseCase getPostsUseCase,  @Named("userID") String id) {
+    public MainViewModel(SavedStateHandle handle, NavManager navManager, GetPostsUseCase getPostsUseCase, @Named("userID") String id) {
         this.navManager = navManager;
         this.getPostsUseCase = getPostsUseCase;
         this.userID = id;
@@ -47,7 +47,7 @@ public class MainViewModel extends ViewModel {
         return postsLiveData;
     }
 
-    void getPosts(){
+    void getPosts() {
         getPostsUseCase.execute(new GetPostsObserver(), new GetPostsUseCase.Params(userID));
     }
 
@@ -58,6 +58,11 @@ public class MainViewModel extends ViewModel {
 
     void navigateToMyPosts() {
         Uri uri = Uri.parse(DeepLinks.MY_POSTS_DEEPLINK);
+        navManager.navigate(uri);
+    }
+
+    void navigateToAPost(String postID) {
+        Uri uri = Uri.parse(DeepLinks.POST_DETAIL_DEEPLINK + "/" + postID);
         navManager.navigate(uri);
     }
 

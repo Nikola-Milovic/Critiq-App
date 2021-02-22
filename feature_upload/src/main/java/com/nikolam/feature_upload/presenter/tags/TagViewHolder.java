@@ -24,6 +24,6 @@ public class TagViewHolder extends SortedListAdapter.ViewHolder<TagModel> {
         binding.getRoot().setOnClickListener(v -> {
             listener.OnTagClickedListener(item);
         });
-       //
+        //
     }
 }

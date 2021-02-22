@@ -33,11 +33,13 @@ private object LibraryVersion {
 
 object LibraryDependency {
     const val TIMBER = "com.jakewharton.timber:timber:${LibraryVersion.TIMBER}"
+
     //UI
     const val SUPPORT_CONSTRAINT_LAYOUT =
             "androidx.constraintlayout:constraintlayout:${LibraryVersion.CONSTRAINT_LAYOUT}"
     const val RECYCLER_VIEW = "androidx.recyclerview:recyclerview:${LibraryVersion.RECYCLER_VIEW}"
     const val MATERIAL = "com.google.android.material:material:${LibraryVersion.MATERIAL}"
+
     //LifeCycle
     const val LIFECYCLE_EXTENSIONS =
             "androidx.lifecycle:lifecycle-extensions:${LibraryVersion.LIFECYCLE}"

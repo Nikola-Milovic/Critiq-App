@@ -7,10 +7,7 @@ import androidx.room.TypeConverters;
 
 import com.nikolam.data.db.converters.Converters;
 
-import java.util.ArrayList;
 import java.util.List;
-
-import retrofit2.Converter;
 
 
 @Entity(tableName = "myPosts")

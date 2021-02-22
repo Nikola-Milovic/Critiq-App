@@ -1,10 +1,10 @@
 package com.nikolam.critiq;
 
 import android.app.Application;
-import org.jetbrains.annotations.NotNull;
-import dagger.hilt.android.HiltAndroidApp;
 
-import leakcanary.LeakCanary;
+import org.jetbrains.annotations.NotNull;
+
+import dagger.hilt.android.HiltAndroidApp;
 import timber.log.Timber;
 
 @HiltAndroidApp

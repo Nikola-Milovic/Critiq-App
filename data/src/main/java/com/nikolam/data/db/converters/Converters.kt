@@ -26,7 +26,7 @@ public class Converters {
     }
 
     @TypeConverter
-    fun toArrayList(str: String ): List<String> {
+    fun toArrayList(str: String): List<String> {
         val gson = Gson()
         val myType = object : TypeToken<List<String>>() {}.type
         return gson.fromJson<ArrayList<String>>(str, myType)

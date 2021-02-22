@@ -1,6 +1,7 @@
 package com.nikolam.common.navigation;
 
 import javax.inject.Singleton;
+
 import dagger.Module;
 import dagger.Provides;
 import dagger.hilt.InstallIn;

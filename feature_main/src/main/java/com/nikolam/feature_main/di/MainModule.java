@@ -15,18 +15,18 @@ import retrofit2.Retrofit;
 @InstallIn(ViewModelComponent.class)
 public class MainModule {
 
-    @Module
-    @InstallIn(ViewModelComponent.class)
-    interface repositoryBinder {
-        @Binds
-        MainRepository bindMainRepository(MainRepositoryImpl repository);
-    }
-
     @Provides
     public MainRetrofitService provideMainRetrofitService(
             Retrofit retrofit
     ) {
         return retrofit.create(MainRetrofitService.class);
+    }
+
+    @Module
+    @InstallIn(ViewModelComponent.class)
+    interface repositoryBinder {
+        @Binds
+        MainRepository bindMainRepository(MainRepositoryImpl repository);
     }
 
 };

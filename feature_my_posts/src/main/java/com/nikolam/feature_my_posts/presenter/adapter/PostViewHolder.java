@@ -5,7 +5,6 @@ import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.nikolam.data.db.models.PostDataModel;
 import com.nikolam.feature_my_posts.databinding.PostItemBinding;
 import com.nikolam.feature_my_posts.domain.models.PostDomainModel;
 
@@ -18,12 +17,13 @@ public class PostViewHolder extends RecyclerView.ViewHolder {
     private PostViewHolder(View itemView) {
         super(itemView);
     }
-    PostViewHolder(PostItemBinding binding){
+
+    PostViewHolder(PostItemBinding binding) {
         super(binding.getRoot());
         this.binding = binding;
     }
 
-    public void bind(PostClickListener l, PostDomainModel m){
+    public void bind(PostClickListener l, PostDomainModel m) {
         this.listener = l;
         this.model = m;
 
@@ -31,7 +31,7 @@ public class PostViewHolder extends RecyclerView.ViewHolder {
 
         StringBuilder sb = new StringBuilder();
 
-        for (String s : m.getTags()){
+        for (String s : m.getTags()) {
             sb.append(s).append(" ");
         }
 

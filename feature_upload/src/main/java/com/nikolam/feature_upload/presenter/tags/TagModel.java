@@ -4,14 +4,12 @@ import androidx.annotation.NonNull;
 
 import com.github.wrdlbrnft.sortedlistadapter.SortedListAdapter;
 
-import java.util.Objects;
-
 public class TagModel implements SortedListAdapter.ViewModel {
 
     private final long id;
     private final String tag;
 
-    public TagModel(long id,String tag) {
+    public TagModel(long id, String tag) {
         this.id = id;
         this.tag = tag;
     }

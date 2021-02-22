@@ -11,8 +11,6 @@ import javax.inject.Inject;
 
 import io.reactivex.rxjava3.annotations.NonNull;
 import io.reactivex.rxjava3.core.Observable;
-import io.reactivex.rxjava3.observers.DisposableObserver;
-import timber.log.Timber;
 
 public class MyPostsRepositoryImpl implements MyPostsRepository {
 
@@ -30,7 +28,7 @@ public class MyPostsRepositoryImpl implements MyPostsRepository {
 //        Observable<List<PostDomainModel>> observable = single.flatMapIterable(list -> list)
 //                .map(PostDomainModel::dataToDomainModel).reduce();
 
-       return source.flatMap(list ->
+        return source.flatMap(list ->
                 Observable.fromIterable(list)
                         .map(PostDomainModel::dataToDomainModel)
                         .toList()

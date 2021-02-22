@@ -9,5 +9,6 @@ import io.reactivex.rxjava3.core.Observable;
 
 public interface AuthRepository {
     Observable<RegistrationResponse> localRegistration(RegistrationModel data);
+
     Observable<LoginResponse> localTokenLogin(LoginTokenModel data);
 }
