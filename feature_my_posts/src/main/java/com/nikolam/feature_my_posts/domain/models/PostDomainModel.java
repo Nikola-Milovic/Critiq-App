@@ -5,22 +5,24 @@ import com.nikolam.data.db.models.PostDataModel;
 import java.util.List;
 
 public class PostDomainModel {
-    public int uid;
-    public String awsImageLink;
-    public String comment;
-    public List<String> tags;
-    public String objectID;
+    private int uid;
+    private String awsImageLink;
+    private String comment;
+    private List<String> tags;
+    private String objectID;
+    private String awsThumbnailLink;
 
-    public PostDomainModel(String awsImageLink, String comment, List<String> tags, String objectID, int uid) {
+    public PostDomainModel(String awsImageLink, String comment, List<String> tags, String objectID, int uid, String thumbnailLink) {
         this.awsImageLink = awsImageLink;
         this.comment = comment;
         this.tags = tags;
         this.objectID = objectID;
         this.uid = uid;
+        this.awsThumbnailLink = thumbnailLink;
     }
 
     public static PostDomainModel dataToDomainModel(PostDataModel model) {
-        return new PostDomainModel(model.getAwsImageLink(), model.getComment(), model.getTags(), model.getObjectID(), model.getUid());
+        return new PostDomainModel(model.getAwsImageLink(), model.getComment(), model.getTags(), model.getObjectID(), model.getUid(), model.getAwsThumbnailLink());
     }
 
     public int getUid() {
@@ -41,5 +43,20 @@ public class PostDomainModel {
 
     public String getObjectID() {
         return objectID;
+    }
+
+    public String getAwsThumbnailLink() {
+        return awsThumbnailLink;
+    }
+
+    @Override
+    public String toString() {
+        return "PostDomainModel{" +
+                ", awsImageLink='" + awsImageLink + '\'' +
+                ", comment='" + comment + '\'' +
+                ", tags=" + tags +
+                ", objectID='" + objectID + '\'' +
+                ", awsThumbnailLink='" + awsThumbnailLink + '\'' +
+                '}';
     }
 }

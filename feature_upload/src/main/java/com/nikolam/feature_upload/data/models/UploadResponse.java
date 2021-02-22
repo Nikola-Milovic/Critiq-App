@@ -10,9 +10,13 @@ public class UploadResponse {
     @SerializedName("id")
     private final String postID;
 
-    public UploadResponse(String awsImageLink, String postID) {
+    @SerializedName("thumbnail")
+    private final String awsThumbnailLink;
+
+    public UploadResponse(String awsImageLink, String postID, String awsThumbnailLink) {
         this.awsImageLink = awsImageLink;
         this.postID = postID;
+        this.awsThumbnailLink = awsThumbnailLink;
     }
 
     public String getAwsImageLink() {
@@ -23,12 +27,8 @@ public class UploadResponse {
         return postID;
     }
 
-    @Override
-    public String toString() {
-        return "UploadResponse{" +
-                "awsImageLink='" + awsImageLink + '\'' +
-                ", postID='" + postID + '\'' +
-                '}';
+    public String getAwsThumbnailLink() {
+        return awsThumbnailLink;
     }
 }
 

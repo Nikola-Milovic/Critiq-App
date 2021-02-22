@@ -7,32 +7,42 @@
     tools:context=".presentation.MainFragment">
 
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/posts_recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
     <LinearLayout
-        android:orientation="horizontal"
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
         <ImageButton
-            android:layout_weight="0.5"
             android:id="@+id/my_posts_button"
-            android:src="@drawable/ic_save"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_weight="0.5"
             android:scaleX="2"
             android:scaleY="2"
-            android:layout_width="50dp"
-            android:layout_height="50dp"/>
+            android:src="@drawable/ic_save" />
 
         <ImageButton
-            android:layout_weight="0.5"
             android:id="@+id/upload_button"
-            android:src="@drawable/ic_baseline_add_24"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_weight="0.5"
             android:scaleX="2"
             android:scaleY="2"
-            android:layout_width="50dp"
-            android:layout_height="50dp"/>
-
+            android:src="@drawable/ic_baseline_add_24" />
 
 
     </LinearLayout>

@@ -93,7 +93,7 @@ public class UploadRepositoryImpl implements UploadRepository {
                 appRepository.insertPost(new PostDataModel(
                         uploadResponse.getAwsImageLink(),
                         comment, tags
-                        , uploadResponse.getPostID()
+                        , uploadResponse.getPostID(), uploadResponse.getAwsThumbnailLink()
                 ));
                 subject.onNext(true);
             }

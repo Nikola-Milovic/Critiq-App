@@ -51,6 +51,7 @@ dependencies {
     api(LibraryDependency.NAVIGATION_UI)
 
     api(LibraryDependency.RETROFIT)
+    implementation(LibraryDependency.RXJAVA_RETROFIT_ADAPTER)
     api(LibraryDependency.GSON_CONVERTER)
     api(LibraryDependency.GSON)
 
@@ -59,7 +60,13 @@ dependencies {
     implementation(LibraryDependency.HILT)
     kapt(LibraryDependency.HILT_COMPILER)
 
+    implementation(LibraryDependency.GLIDE)
+    annotationProcessor(LibraryDependency.GLIDE_COMPILER)
+
+    implementation(LibraryDependency.ROOM_RXJAVA)
+
     implementation(project(":common"))
+   // implementation(project(":data"))
 
     addTestDependencies()
 }

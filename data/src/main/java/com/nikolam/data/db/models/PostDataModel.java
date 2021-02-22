@@ -31,11 +31,15 @@ public class PostDataModel {
     @ColumnInfo(name = "object_id")
     public String objectID;
 
-    public PostDataModel(String awsImageLink, String comment, List<String> tags, String objectID) {
+    @ColumnInfo(name = "thumbnail_link")
+    public String awsThumbnailLink;
+
+    public PostDataModel(String awsImageLink, String comment, List<String> tags, String objectID, String awsThumbnailLink) {
         this.awsImageLink = awsImageLink;
         this.comment = comment;
         this.tags = tags;
         this.objectID = objectID;
+        this.awsThumbnailLink = awsThumbnailLink;
     }
 
     public int getUid() {
@@ -56,5 +60,9 @@ public class PostDataModel {
 
     public String getObjectID() {
         return objectID;
+    }
+
+    public String getAwsThumbnailLink() {
+        return awsThumbnailLink;
     }
 }

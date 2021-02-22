@@ -51,12 +51,6 @@ public class MyPostsViewModel extends ViewModel {
 
     private final class GetPostsObserver extends DisposableObserver<List<PostDomainModel>> {
         @Override
-        protected void onStart() {
-            super.onStart();
-            Timber.d("ONStart");
-        }
-
-        @Override
         public void onNext(@NonNull List<PostDomainModel> posts) {
             postsLiveData.setValue(posts);
             Timber.d(posts.toString());

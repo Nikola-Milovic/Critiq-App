@@ -59,8 +59,9 @@ public class MyPostsFragment extends Fragment implements PostClickListener {
         super.onDestroyView();
     }
 
+
     @Override
-    public void onPostClicked(PostDataModel model) {
+    public void onPostClicked(PostDomainModel model) {
 
     }
 }
