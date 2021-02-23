@@ -5,8 +5,8 @@ import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.nikolam.common.models.PostDomainModel;
 import com.nikolam.feature_my_posts.databinding.PostItemBinding;
-import com.nikolam.feature_my_posts.domain.models.PostDomainModel;
 
 public class PostViewHolder extends RecyclerView.ViewHolder {
 
@@ -41,7 +41,7 @@ public class PostViewHolder extends RecyclerView.ViewHolder {
             listener.onPostClicked(model);
         });
 
-        Glide.with(binding.getRoot().getContext()).load(model.getAwsThumbnailLink()).into(binding.thumbnailImageView);
+        Glide.with(binding.getRoot().getContext()).load(model.getAwsImageLink()).into(binding.thumbnailImageView);
 
     }
 }

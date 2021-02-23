@@ -1,9 +1,10 @@
-package com.nikolam.feature_my_posts.data.models;
+package com.nikolam.feature_my_posts.data;
 
+import com.nikolam.common.models.PostDomainModel;
 import com.nikolam.data.db.AppRepository;
 import com.nikolam.data.db.models.PostDataModel;
+import com.nikolam.data.models.ModelMappers;
 import com.nikolam.feature_my_posts.domain.MyPostsRepository;
-import com.nikolam.feature_my_posts.domain.models.PostDomainModel;
 
 import java.util.List;
 
@@ -30,7 +31,7 @@ public class MyPostsRepositoryImpl implements MyPostsRepository {
 
         return source.flatMap(list ->
                 Observable.fromIterable(list)
-                        .map(PostDomainModel::dataToDomainModel)
+                        .map(ModelMappers::postDataToDomainModel)
                         .toList()
                         .toObservable() // Required for RxJava 2.x
         );

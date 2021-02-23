@@ -66,7 +66,7 @@ dependencies {
     implementation(LibraryDependency.ROOM_RXJAVA)
 
     implementation(project(":common"))
-    // implementation(project(":data"))
+    implementation(project(":data"))
 
     addTestDependencies()
 }

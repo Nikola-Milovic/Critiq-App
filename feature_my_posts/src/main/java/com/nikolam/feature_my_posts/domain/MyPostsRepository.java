@@ -1,6 +1,7 @@
 package com.nikolam.feature_my_posts.domain;
 
-import com.nikolam.feature_my_posts.domain.models.PostDomainModel;
+
+import com.nikolam.common.models.PostDomainModel;
 
 import java.util.List;
 

@@ -6,10 +6,10 @@ import androidx.lifecycle.SavedStateHandle;
 import androidx.lifecycle.ViewModel;
 
 import com.nikolam.common.navigation.NavManager;
+import com.nikolam.feature_post_detail.data.models.PostCommentResponse;
 import com.nikolam.feature_post_detail.domain.GetPostUseCase;
-import com.nikolam.feature_post_detail.domain.models.PostDomainModel;
-
-import java.util.List;
+import com.nikolam.feature_post_detail.domain.PostCommentUseCase;
+import com.nikolam.common.models.PostDomainModel;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -24,16 +24,24 @@ public class PostDetailViewModel extends ViewModel {
 
     private final String userID;
     private final GetPostUseCase getPostUseCase;
+    private final PostCommentUseCase postCommentUseCase;
     private String postID;
+
+    private final NavManager navManager;
 
     private MutableLiveData<PostDomainModel> postLiveData = new MutableLiveData<PostDomainModel>() {
     };
 
+    private MutableLiveData<Boolean> isMinePostLiveData = new MutableLiveData<Boolean>() {
+    };
 
     @Inject
-    public PostDetailViewModel(SavedStateHandle state, @Named("userID") String userID, GetPostUseCase getPostUseCase) {
+    public PostDetailViewModel(SavedStateHandle state, @Named("userID") String userID, GetPostUseCase getPostUseCase, PostCommentUseCase postCommentUseCase,
+                               NavManager navManager) {
         this.userID = userID;
         this.getPostUseCase = getPostUseCase;
+        this.navManager = navManager;
+        this.postCommentUseCase = postCommentUseCase;
     }
 
     public LiveData<PostDomainModel> getPostLiveData() {
@@ -43,7 +51,12 @@ public class PostDetailViewModel extends ViewModel {
         return postLiveData;
     }
 
-
+    public LiveData<Boolean> getIsMinePostLiveData() {
+        if (isMinePostLiveData == null) {
+            isMinePostLiveData = new MutableLiveData<>();
+        }
+        return isMinePostLiveData;
+    }
 
     public void setPostID(String postID) {
         this.postID = postID;
@@ -53,8 +66,17 @@ public class PostDetailViewModel extends ViewModel {
         getPostUseCase.execute(new GetPostObserver(), new GetPostUseCase.Params(postID));
     }
 
+    public void goBack() {
+        navManager.popBackStack();
+    }
+
+    public void postComment(String contents) {
+        postCommentUseCase.execute(new PostCommentObserver(), new PostCommentUseCase.Params(postID, userID,contents));
+    }
+
     @Override
     protected void onCleared() {
+        postCommentUseCase.dispose();
         getPostUseCase.dispose();
         super.onCleared();
     }
@@ -63,8 +85,9 @@ public class PostDetailViewModel extends ViewModel {
 
         @Override
         public void onNext(@NonNull PostDomainModel post) {
-            Timber.d("Post is %s", post.toString());
+            // Timber.d("Post is %s", post.toString());
             postLiveData.setValue(post);
+            isMinePostLiveData.setValue(post.getUserID().equals(userID));
         }
 
         @Override
@@ -74,7 +97,24 @@ public class PostDetailViewModel extends ViewModel {
 
         @Override
         public void onComplete() {
-            Timber.d("Post fetching completed");
+            //Timber.d("Post fetching completed");
+        }
+    }
+
+    private class PostCommentObserver extends DisposableObserver<PostCommentResponse> {
+
+        @Override
+        public void onNext(@NonNull PostCommentResponse comment) {
+            Timber.d("Post response status is %s", comment.getStatus());
+        }
+
+        @Override
+        public void onError(@NonNull Throwable e) {
+            Timber.e(e);
+        }
+
+        @Override
+        public void onComplete() {
         }
     }
 }

@@ -11,8 +11,8 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.nikolam.common.models.PostDomainModel;
 import com.nikolam.feature_main.databinding.MainFragmentBinding;
-import com.nikolam.feature_main.domain.models.PostDomainModel;
 import com.nikolam.feature_main.presentation.adapter.PostAdapter;
 import com.nikolam.feature_main.presentation.adapter.PostClickListener;
 
@@ -70,6 +70,6 @@ public class MainFragment extends Fragment implements PostClickListener {
 
     @Override
     public void onPostClicked(PostDomainModel model) {
-        viewModel.navigateToAPost(model.objectID);
+        viewModel.navigateToAPost(model.getObjectID());
     }
 }

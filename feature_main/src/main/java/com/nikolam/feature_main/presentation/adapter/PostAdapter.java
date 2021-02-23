@@ -6,8 +6,8 @@ import android.view.ViewGroup;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.nikolam.common.models.PostDomainModel;
 import com.nikolam.feature_main.databinding.PostItemBinding;
-import com.nikolam.feature_main.domain.models.PostDomainModel;
 
 import java.util.ArrayList;
 import java.util.List;

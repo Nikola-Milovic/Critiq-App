@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "c9d91fde8e918a6e381fe59bc3236ee6",
+    "identityHash": "018bb7582eb0b999237ab50e48f3ff60",
     "entities": [
       {
         "tableName": "myPosts",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`uid` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `aws_image_link` TEXT, `comment` TEXT, `tags` TEXT, `object_id` TEXT, `thumbnail_link` TEXT)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`uid` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `aws_image_link` TEXT, `comment` TEXT, `tags` TEXT, `object_id` TEXT, `thumbnail_link` TEXT, `postedOnMillis` INTEGER, `comments` TEXT)",
         "fields": [
           {
             "fieldPath": "uid",
@@ -43,6 +43,18 @@
             "columnName": "thumbnail_link",
             "affinity": "TEXT",
             "notNull": false
+          },
+          {
+            "fieldPath": "datePostedOnMillis",
+            "columnName": "postedOnMillis",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "comments",
+            "columnName": "comments",
+            "affinity": "TEXT",
+            "notNull": false
           }
         ],
         "primaryKey": {
@@ -58,7 +70,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'c9d91fde8e918a6e381fe59bc3236ee6')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '018bb7582eb0b999237ab50e48f3ff60')"
     ]
   }
 }

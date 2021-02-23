@@ -3,7 +3,7 @@ package com.nikolam.feature_my_posts.domain;
 import com.nikolam.common.domain.UseCase;
 import com.nikolam.common.domain.executor.PostExecutionThread;
 import com.nikolam.common.domain.executor.ThreadExecutor;
-import com.nikolam.feature_my_posts.domain.models.PostDomainModel;
+import com.nikolam.common.models.PostDomainModel;
 
 import java.util.List;
 

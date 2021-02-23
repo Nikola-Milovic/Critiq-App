@@ -11,8 +11,8 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.nikolam.common.models.PostDomainModel;
 import com.nikolam.feature_my_posts.databinding.MyPostsFragmentBinding;
-import com.nikolam.feature_my_posts.domain.models.PostDomainModel;
 import com.nikolam.feature_my_posts.presenter.adapter.PostAdapter;
 import com.nikolam.feature_my_posts.presenter.adapter.PostClickListener;
 
@@ -57,6 +57,6 @@ public class MyPostsFragment extends Fragment implements PostClickListener {
 
     @Override
     public void onPostClicked(PostDomainModel model) {
-
+        viewModel.navigateToAPost(model.getObjectID());
     }
 }

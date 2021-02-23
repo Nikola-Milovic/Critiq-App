@@ -1,6 +1,6 @@
 package com.nikolam.feature_my_posts.di;
 
-import com.nikolam.feature_my_posts.data.models.MyPostsRepositoryImpl;
+import com.nikolam.feature_my_posts.data.MyPostsRepositoryImpl;
 import com.nikolam.feature_my_posts.domain.MyPostsRepository;
 
 import dagger.Binds;

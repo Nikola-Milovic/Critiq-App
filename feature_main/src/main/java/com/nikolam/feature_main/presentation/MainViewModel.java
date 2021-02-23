@@ -7,11 +7,10 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.SavedStateHandle;
 import androidx.lifecycle.ViewModel;
 
+import com.nikolam.common.models.PostDomainModel;
 import com.nikolam.common.navigation.DeepLinks;
 import com.nikolam.common.navigation.NavManager;
 import com.nikolam.feature_main.domain.GetPostsUseCase;
-import com.nikolam.feature_main.domain.models.PostDomainModel;
-
 import java.util.List;
 
 import javax.inject.Inject;

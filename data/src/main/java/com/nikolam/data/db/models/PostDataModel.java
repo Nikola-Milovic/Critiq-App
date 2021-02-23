@@ -5,7 +5,11 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 import androidx.room.TypeConverters;
 
+import com.nikolam.common.models.CommentDomainModel;
 import com.nikolam.data.db.converters.Converters;
+import com.nikolam.data.models.CommentNetworkModel;
+
+import org.w3c.dom.Comment;
 
 import java.util.List;
 
@@ -31,12 +35,21 @@ public class PostDataModel {
     @ColumnInfo(name = "thumbnail_link")
     public String awsThumbnailLink;
 
-    public PostDataModel(String awsImageLink, String comment, List<String> tags, String objectID, String awsThumbnailLink) {
+    @ColumnInfo(name = "postedOnMillis")
+    public Long datePostedOnMillis;
+
+    @TypeConverters(Converters.class)
+    @ColumnInfo(name = "comments")
+    public List<CommentNetworkModel> comments;
+
+    public PostDataModel(String awsImageLink, String comment, List<String> tags, String objectID, String awsThumbnailLink, Long datePostedOnMillis, List<CommentNetworkModel> comments) {
         this.awsImageLink = awsImageLink;
         this.comment = comment;
         this.tags = tags;
         this.objectID = objectID;
         this.awsThumbnailLink = awsThumbnailLink;
+        this.datePostedOnMillis = datePostedOnMillis;
+        this.comments = comments;
     }
 
     public int getUid() {
@@ -61,5 +74,27 @@ public class PostDataModel {
 
     public String getAwsThumbnailLink() {
         return awsThumbnailLink;
+    }
+
+    public Long getDatePostedOnMillis() {
+        return datePostedOnMillis;
+    }
+
+    public List<CommentNetworkModel> getComments() {
+        return comments;
+    }
+
+    @Override
+    public String toString() {
+        return "PostDataModel{" +
+                "uid=" + uid +
+                ", awsImageLink='" + awsImageLink + '\'' +
+                ", comment='" + comment + '\'' +
+                ", tags=" + tags +
+                ", objectID='" + objectID + '\'' +
+                ", awsThumbnailLink='" + awsThumbnailLink + '\'' +
+                ", datePostedOnMillis=" + datePostedOnMillis +
+                ", comments=" + comments +
+                '}';
     }
 }

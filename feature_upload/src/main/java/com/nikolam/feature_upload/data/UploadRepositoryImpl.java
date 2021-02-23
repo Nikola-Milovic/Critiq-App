@@ -19,6 +19,7 @@ import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.inject.Inject;
 
@@ -93,7 +94,8 @@ public class UploadRepositoryImpl implements UploadRepository {
                 appRepository.insertPost(new PostDataModel(
                         uploadResponse.getAwsImageLink(),
                         comment, tags
-                        , uploadResponse.getPostID(), uploadResponse.getAwsThumbnailLink()
+                        , uploadResponse.getPostID(), uploadResponse.getAwsThumbnailLink(),
+                        new Date().getTime(), new ArrayList<>()
                 ));
                 subject.onNext(true);
             }

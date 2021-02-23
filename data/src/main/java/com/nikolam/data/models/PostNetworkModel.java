@@ -1,10 +1,10 @@
-package com.nikolam.feature_post_detail.data.models;
+package com.nikolam.data.models;
 
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class PostDataModel {
+public class PostNetworkModel {
     @SerializedName("user_id")
     private final String userID;
 
@@ -32,7 +32,10 @@ public class PostDataModel {
     @SerializedName("_id")
     private final String objectID;
 
-    public PostDataModel(String userID, String awsImageLink, Long datePostedInMillis, String comment, List<String> tags, String awsKey, String awsThumbnailLink, String awsThumbnailKey, String objectID) {
+    @SerializedName("comments")
+    private final List<CommentNetworkModel> comments;
+
+    public PostNetworkModel(String userID, String awsImageLink, Long datePostedInMillis, String comment, List<String> tags, String awsKey, String awsThumbnailLink, String awsThumbnailKey, String objectID, List<CommentNetworkModel> comments) {
         this.userID = userID;
         this.awsImageLink = awsImageLink;
         this.datePostedInMillis = datePostedInMillis;
@@ -42,6 +45,7 @@ public class PostDataModel {
         this.awsThumbnailLink = awsThumbnailLink;
         this.awsThumbnailKey = awsThumbnailKey;
         this.objectID = objectID;
+        this.comments = comments;
     }
 
     public String getUserID() {
@@ -74,5 +78,9 @@ public class PostDataModel {
 
     public String getObjectID() {
         return objectID;
+    }
+
+    public List<CommentNetworkModel> getComments() {
+        return comments;
     }
 }

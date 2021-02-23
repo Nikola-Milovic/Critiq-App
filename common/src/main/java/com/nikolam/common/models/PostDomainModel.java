@@ -1,7 +1,6 @@
-package com.nikolam.feature_post_detail.domain.models;
+package com.nikolam.common.models;
 
-import com.nikolam.feature_post_detail.data.models.PostDataModel;
-
+import java.util.ArrayList;
 import java.util.List;
 
 public class PostDomainModel {
@@ -13,21 +12,19 @@ public class PostDomainModel {
     public String userID;
     public String thumbnailLink;
     public Long postedOnMillis;
+    public ArrayList<CommentDomainModel> comments;
 
-    public PostDomainModel(String awsImageLink, String comment, List<String> tags, String objectID, String thumbnailLink, String userID, Long postedOnMillis) {
+
+    public PostDomainModel(String awsImageLink, String comment, List<String> tags, String objectID, String userID, String thumbnailLink, Long postedOnMillis, ArrayList<CommentDomainModel> comments) {
         this.awsImageLink = awsImageLink;
         this.comment = comment;
         this.tags = tags;
         this.objectID = objectID;
-        this.thumbnailLink = thumbnailLink;
         this.userID = userID;
+        this.thumbnailLink = thumbnailLink;
         this.postedOnMillis = postedOnMillis;
+        this.comments = comments;
     }
-
-    public static PostDomainModel dataToDomainModel(PostDataModel model) {
-        return new PostDomainModel(model.getAwsImageLink(), model.getComment(), model.getTags(), model.getObjectID(), model.getAwsThumbnailLink(), model.getUserID(), model.getDatePostedInMillis());
-    }
-
 
     public String getAwsImageLink() {
         return awsImageLink;
@@ -53,6 +50,14 @@ public class PostDomainModel {
         return userID;
     }
 
+    public void setUserID(String userID) {
+        this.userID = userID;
+    }
+
+    public ArrayList<CommentDomainModel> getComments() {
+        return comments;
+    }
+
     @Override
     public String toString() {
         return "PostDomainModel{" +
@@ -63,6 +68,7 @@ public class PostDomainModel {
                 ", userID='" + userID + '\'' +
                 ", thumbnailLink='" + thumbnailLink + '\'' +
                 ", postedOnMillis=" + postedOnMillis +
+                ", comments=" + comments +
                 '}';
     }
 }

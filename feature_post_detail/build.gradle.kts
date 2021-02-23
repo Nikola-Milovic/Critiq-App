@@ -57,6 +57,8 @@ dependencies {
     implementation(LibraryDependency.HILT)
     kapt(LibraryDependency.HILT_COMPILER)
 
+    implementation(LibraryDependency.SUPPORT_CONSTRAINT_LAYOUT)
+
     implementation(LibraryDependency.GLIDE)
     annotationProcessor(LibraryDependency.GLIDE_COMPILER)
 
