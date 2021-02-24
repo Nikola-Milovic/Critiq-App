@@ -4,6 +4,7 @@ plugins {
     id(GradlePluginId.KOTLIN_KAPT)
     id(GradlePluginId.SAFE_ARGS)
     id(GradlePluginId.HILT_ANDROID)
+    id(GradlePluginId.GOOGLE_SERVICES)
 }
 
 android {
@@ -54,6 +55,11 @@ dependencies {
 
     implementation(LibraryDependency.HILT)
     kapt(LibraryDependency.HILT_COMPILER)
+
+    //Google
+    implementation(platform(PlatformDependency.FIREBASE_BOM))
+    implementation(LibraryDependency.FIREBASE_MESSAGING)
+    implementation(LibraryDependency.FIREBASE_ANALYTICS)
 
     implementation(project(":common"))
     implementation(project(":data"))

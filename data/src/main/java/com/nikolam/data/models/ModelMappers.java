@@ -15,7 +15,7 @@ public class ModelMappers {
         }
 
         return new PostDomainModel(model.getAwsImageLink(), model.getComment(), model.getTags(), model.getObjectID(),
-                model.getAwsThumbnailLink(), model.getUserID(), model.getDatePostedInMillis(), comments);
+                model.getUserID(), model.getAwsThumbnailLink(), model.getDatePostedInMillis(), comments);
     }
 
     public static PostDomainModel postDataToDomainModel(PostDataModel model) {
@@ -26,7 +26,7 @@ public class ModelMappers {
         }
 
         return new PostDomainModel(model.getAwsImageLink(), model.getComment(), model.getTags(), model.getObjectID(),
-                model.getAwsThumbnailLink(), "", model.getDatePostedOnMillis(),comments);
+                "", model.getAwsThumbnailLink(), model.getDatePostedOnMillis(),comments);
     }
 
     public static CommentDomainModel commentNetworkToDomainModel(CommentNetworkModel model) {

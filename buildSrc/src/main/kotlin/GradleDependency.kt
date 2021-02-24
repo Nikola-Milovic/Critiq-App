@@ -16,6 +16,8 @@ object GradlePluginId {
 
     const val KOTLIN_KAPT = "kotlin-kapt"
 
+    const val GOOGLE_SERVICES = "com.google.gms.google-services"
+
     const val HILT_ANDROID = "dagger.hilt.android.plugin"
 
 }

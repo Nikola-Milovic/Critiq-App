@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModel;
 import com.nikolam.common.models.PostDomainModel;
 import com.nikolam.common.navigation.DeepLinks;
 import com.nikolam.common.navigation.NavManager;
+import com.nikolam.data.db.AppRepository;
 import com.nikolam.feature_main.domain.GetPostsUseCase;
 import java.util.List;
 
@@ -33,10 +34,11 @@ public class MainViewModel extends ViewModel {
     };
 
     @Inject
-    public MainViewModel(SavedStateHandle handle, NavManager navManager, GetPostsUseCase getPostsUseCase, @Named("userID") String id) {
+    public MainViewModel(SavedStateHandle handle, NavManager navManager, GetPostsUseCase getPostsUseCase, @Named("userID") String id, AppRepository appRepository) {
         this.navManager = navManager;
         this.getPostsUseCase = getPostsUseCase;
         this.userID = id;
+        appRepository.saveFCMToken(userID);
     }
 
     public LiveData<List<PostDomainModel>> getPostsLiveData() {

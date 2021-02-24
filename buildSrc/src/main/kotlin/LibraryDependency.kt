@@ -81,4 +81,10 @@ object LibraryDependency {
     const val RXJAVA = "io.reactivex.rxjava3:rxjava:${LibraryVersion.RXJAVA}"
     const val RXJAVA_ANDROID = "io.reactivex.rxjava3:rxandroid:${LibraryVersion.RXJAVA_ANDROID}"
     const val RXJAVA_RETROFIT_ADAPTER = "com.squareup.retrofit2:adapter-rxjava3:${LibraryVersion.RETROFIT}"
+    const val FIREBASE_MESSAGING = "com.google.firebase:firebase-messaging"
+    const val FIREBASE_ANALYTICS = "com.google.firebase:firebase-analytics"
+}
+
+object PlatformDependency {
+    const val FIREBASE_BOM = "com.google.firebase:firebase-bom:${LibraryVersion.FIREBASE_BOM}"
 }

@@ -58,6 +58,11 @@ public class PostDomainModel {
         return comments;
     }
 
+
+    public void setComments(ArrayList<CommentDomainModel> comments) {
+        this.comments = comments;
+    }
+
     @Override
     public String toString() {
         return "PostDomainModel{" +

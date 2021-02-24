@@ -1,13 +1,18 @@
 package com.nikolam.feature_post_detail.data;
 
 import com.nikolam.common.domain.executor.ThreadExecutor;
+import com.nikolam.common.models.CommentDomainModel;
 import com.nikolam.common.models.PostDomainModel;
 import com.nikolam.data.db.AppRepository;
 import com.nikolam.data.db.models.PostDataModel;
+import com.nikolam.data.models.CommentNetworkModel;
 import com.nikolam.data.models.ModelMappers;
 import com.nikolam.data.models.PostNetworkModel;
 import com.nikolam.feature_post_detail.data.models.PostCommentResponse;
 import com.nikolam.feature_post_detail.domain.PostDetailRepository;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -108,6 +113,40 @@ public class PostDetailRepositoryImpl implements PostDetailRepository {
     @Override
     public @NonNull Observable<PostCommentResponse> postComment(String postID, String userID, String comment) {
         return retrofitService.postComment(new Comment(postID, userID, comment)).toObservable();
+    }
+
+    @Override
+    public @NonNull Observable<List<CommentDomainModel>> updateComments(String postID) {
+        PublishSubject<List<CommentDomainModel>> publishSubject = PublishSubject.create();
+
+        retrofitService.getComments(postID).subscribeWith(
+                new SingleObserver<List<CommentNetworkModel>>() {
+
+                    @Override
+                    public void onSubscribe(@NonNull Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onSuccess(@NonNull List<CommentNetworkModel> commentNetworkModels) {
+                        ArrayList<CommentDomainModel> domainModels = new ArrayList<>();
+                        for (CommentNetworkModel m : commentNetworkModels){
+                            domainModels.add(ModelMappers.commentNetworkToDomainModel(m));
+                        }
+                        publishSubject.onNext(domainModels);
+                        publishSubject.onComplete();
+                        appRepository.updateComments(postID, commentNetworkModels);
+                    }
+
+                    @Override
+                    public void onError(@NonNull Throwable e) {
+                        publishSubject.onError(e);
+
+                    }
+                }
+        );
+
+        return publishSubject;
     }
 
     public class Comment {

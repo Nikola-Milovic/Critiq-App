@@ -27,6 +27,7 @@ object PluginsVersions {
 
     const val HILT = "2.31.2-alpha"
 
+    const val GOOGLE_SERVICES = "4.3.5"
 }
 
 dependencies {
@@ -34,4 +35,7 @@ dependencies {
     implementation("com.github.ben-manes:gradle-versions-plugin:${PluginsVersions.GRADLE_VERSIONS}")
     implementation("androidx.navigation:navigation-safe-args-gradle-plugin:${PluginsVersions.NAVIGATION}")
     implementation("com.google.dagger:hilt-android-gradle-plugin:${PluginsVersions.HILT}")
+
+    implementation("com.google.gms:google-services:${PluginsVersions.GOOGLE_SERVICES}")
+
 }

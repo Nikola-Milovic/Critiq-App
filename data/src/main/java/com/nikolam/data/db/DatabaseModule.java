@@ -12,6 +12,7 @@ import dagger.Provides;
 import dagger.hilt.InstallIn;
 import dagger.hilt.android.qualifiers.ApplicationContext;
 import dagger.hilt.components.SingletonComponent;
+import retrofit2.Retrofit;
 
 @Module()
 @InstallIn(SingletonComponent.class)
@@ -24,7 +25,14 @@ public class DatabaseModule {
     }
 
     @Provides
-    AppRepository provideAppRepository(AppDatabase db, ThreadExecutor exe, PostExecutionThread pet) {
-        return new AppRepository(db, exe, pet);
+    AppRepository provideAppRepository(AppDatabase db, ThreadExecutor exe, PostExecutionThread pet, @ApplicationContext  Context context, DataRetrofitService dataRetrofitService) {
+        return new AppRepository(db, exe, pet, context, dataRetrofitService);
+    }
+
+    @Provides
+    public DataRetrofitService provideDataRetrofitService(
+            Retrofit retrofit
+    ) {
+        return retrofit.create(DataRetrofitService.class);
     }
 }
